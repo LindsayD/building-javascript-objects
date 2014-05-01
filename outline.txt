@@ -1,0 +1,125 @@
+Outline - Building JavaScript Objects
+
+Introduction
+	Welcome
+	Who am I to talk?
+	"Always bet on JS" - Eric Elliott
+	"JavaScript has something that other languages lack: a sense of Freedom" -Eric Elliott
+
+Everything is an object, but it's not Classic OOP (TM)
+	Prototype based object model
+	Functions are also objects (first class citizens)
+		JavaScript can be used as a functional language, but that is about not altering objects!
+	Ok, there is one thing that isn't an object - undefined
+	Objects are also hashes/collections/"associative arrays"
+	You can mimic OOP in JS, but why?  Inheritance can be tricky. Classes in ECMA6/TypeScript, etc are syntax sugar
+
+Prototypes != Classes
+	The 3 parts of JavaScript object
+		Instance
+		Constructor
+		Prototype
+			Delgate prototype - prototype chain facilitator... saves memory because you don't have to redfine all the same thigns over and over
+				use Object.create
+			Cloning / Concatenation (extension) - default state, mixins 
+			Functional Inheritance - encapsulation (module pattern, composition for mixins)
+			
+	How the Prototype model works in memory
+		Scoping
+		this/Context (Global vs local)
+		Closure
+		Object Activation
+		Variable Hoisting
+		
+Patterns of Object Creation
+	Object Literals
+		The fastest and easiest way to create an object, is to create a literal!
+	Object Extension (Mixins) (sort of like Interfaces)
+		Simplest way to add additional data/functionality to an object.
+		Mixins are what it's called when it extends functionality
+		Extension is what it's called when used to build up data
+		Only works on an object instance and does not influence other instances 
+			Though is usually used as the mechanism for extending the prototype object in prototype inheritance
+		No way to tell where the extra data/functionality comes from, or if it's implemented to a particular API, or what is responsible for the extension.
+		Can produce side effects if the objects being mixed in have references to other objects instead of just values or cloned objects.
+	Module Pattern (Closures)
+		Produces an object instance without a specialized constructor
+		Provides a mechanism for "private" variables
+		Works within a closure
+		May be harder to follow because functions are typically defined in the closure scope and must be mapped to returned object
+		Can be tricky to realize that the returned object does not reference pointers, only values
+			If you want to expose variables in the closure, you have to return a function that accesses them.
+		No way to extend all instances after instance creation
+		No way to determine what created the object (no "type" checking via constructor)
+		May consume more memory because a closure is created for every instance created
+	Prototype Inheritance
+		Not straightforward
+			very wordy
+			A bit confusing if you're used to OO
+			Syntax sugar in recent versions of JS and compile-to JS languages don't help understand because they mask with OO concepts
+		IsInstanceOf != typeOf
+		Setting properties in the constructor != providing defaults via prototype
+			setting things in the constructor overrides any prototype defaults by giving the instance it's own value
+				all constructed objects will have that value, but changes to the prototype afterward will be ignored.
+		Returning an object in your constructor can botch things
+			Will cause the constructor to be Object instead of your constructor, but only if it's an object returned, not any other type.
+		
+		Benefits
+			Provides some "type" checking (via constructor comparison)
+			Allows instant instance extension
+			Allows mechanism for providing default functionality and property values
+		Drawbacks
+			"Inheritance hierarchies are trouble. Making a small change requires a lot of thought and rework." -Eric Elliott
+			"Favor object composition over class inheritance." - the Gang of Four, "Design Patterns"
+			There are no private variables, everything is exposed via the object properties/methods
+			You can't lock down the API since there is easy extension
+				Extending the prototype can introduce side effects
+			Not particularly easy set-up
+				Extending the prototype is kind of ugly
+				Multiple levels of inheritance needs some extra constructor assignment
+			Prototype chaining can be misleading (hasOwnProperty checks)
+			There is no way to provide "protected" methods that are only accessible between super and subclasses
+
+			
+Resources:
+http://ericleads.com/2013/06/classical-inheritance-is-obsolete-how-to-think-in-prototypal-oo/
+
+
+Functional Prototype example:
+var model = function() {
+	var attrs = {};
+	
+	this.set = function(name, value) {
+		attrs[name] = value;
+		this.trigger('change', {
+			name: name,
+			value: value
+		});
+	};
+	
+	this.get = function(name, value) {
+		return attrs[name];
+	}
+	
+	_.extend(this, Backbone.Events);
+};
+
+
+var george = {};
+model
+	.call(george) // object instatiation
+	.set('name', 'George');
+george.get('name');
+
+george.on('change', function(event) {
+	console.log(event.name, event.value);
+});
+
+
+george.set('name', 'Simon');
+	
+			
+			
+
+
+			
