@@ -13,23 +13,6 @@ Everything is an object, but it's not Classic OOP (TM)
 	Ok, there is one thing that isn't an object - undefined
 	Objects are also hashes/collections/"associative arrays"
 	You can mimic OOP in JS, but why?  Inheritance can be tricky. Classes in ECMA6/TypeScript, etc are syntax sugar
-
-Prototypes != Classes
-	The 3 parts of JavaScript object
-		Instance
-		Constructor
-		Prototype
-			Delgate prototype - prototype chain facilitator... saves memory because you don't have to redfine all the same thigns over and over
-				use Object.create
-			Cloning / Concatenation (extension) - default state, mixins 
-			Functional Inheritance - encapsulation (module pattern, composition for mixins)
-			
-	How the Prototype model works in memory
-		Scoping
-		this/Context (Global vs local)
-		Closure
-		Object Activation
-		Variable Hoisting
 		
 Patterns of Object Creation
 	Object Literals
@@ -53,6 +36,23 @@ Patterns of Object Creation
 		No way to determine what created the object (no "type" checking via constructor)
 		May consume more memory because a closure is created for every instance created
 	Prototype Inheritance
+		Prototypes != Classes
+			The 3 parts of JavaScript object
+				Instance
+				Constructor
+				Prototype
+					Delgate prototype - prototype chain facilitator... saves memory because you don't have to redfine all the same thigns over and over
+						use Object.create
+					Cloning / Concatenation (extension) - default state, mixins 
+					Functional Inheritance - encapsulation (module pattern, composition for mixins)
+					
+			How the Prototype model works in memory
+				Scoping
+				this/Context (Global vs local)
+				Closure
+				Object Activation
+				Variable Hoisting
+	
 		Not straightforward
 			very wordy
 			A bit confusing if you're used to OO
@@ -117,6 +117,12 @@ george.on('change', function(event) {
 
 
 george.set('name', 'Simon');
+
+
+
+If the first thing you type, when writing a Ruby app,
+is: ‘rails’, you’ve already lost the architecture game.
+— Uncle Bob Martin
 	
 			
 			

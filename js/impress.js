@@ -207,6 +207,21 @@
         
         transitionDuration: 1000
     };
+	var optionDefaults = {
+		onStepEnter: function(step) {},
+		onSubStepEnter: function(step, substepIndex, forward) {},
+		onStepLeave: function(step) {},
+		showNotes: false
+	};
+	var merge = function(obj1, obj2) {
+		for (var prop in obj2) {
+			if (obj2.hasOwnProperty(prop)) {
+				if (!obj1.hasOwnProperty(prop))
+					obj1[prop] = obj2[prop];
+			}
+		}
+		return obj1;
+	}
     
     // it's just an empty function ... and a useless comment.
     var empty = function () { return false; };
@@ -217,8 +232,9 @@
     // It's the core `impress` function that returns the impress.js API
     // for a presentation based on the element with given id ('impress'
     // by default).
-    var impress = window.impress = function ( rootId ) {
+    var impress = window.impress = function ( rootId, options ) {
         
+		options = merge(options, optionDefaults);
         // If impress.js is not supported by the browser return a dummy API
         // it may not be a perfect solution but we return early and avoid
         // running code that may use features not implemented in the browser.
@@ -279,6 +295,7 @@
         var onStepEnter = function (step) {
             if (lastEntered !== step) {
                 triggerEvent(step, "impress:stepenter");
+				options.onStepEnter(step);
                 lastEntered = step;
             }
         };
@@ -289,6 +306,7 @@
         var onStepLeave = function (step) {
             if (lastEntered === step) {
                 triggerEvent(step, "impress:stepleave");
+				options.onStepLeave(step);
                 lastEntered = null;
             }
         };
@@ -310,8 +328,12 @@
                     },
                     scale: toNumber(data.scale, 1),
                     el: el,
+					substeps: data.substeps ? parseInt(data.substeps) : 0, // LLD
+					substep: 0, // LLD
 					index: idx, // LLD
-					isprop: data.isprop //LLD
+					mimic: data.mimic, // LLD
+					isprop: data.isprop, //LLD
+					group: data.group // LLD
                 };
             
             if ( !el.id ) {
@@ -439,30 +461,74 @@
             // If you are reading this and know any better way to handle it, I'll be glad to hear about it!
             window.scrollTo(0, 0);
             
+			// LLD - If we are mimicing a step then set the element properly.
 			var realStep = el;
+			if (el.dataset.mimic && el.dataset.mimic !== '') el = getStep(el.dataset.mimic);
             var step = stepsData["impress-" + el.id];
 			
-			//LLD  if we're supposed to move to the next step because this one is a prop, set it up.
+			//LLD if we're supposed to move to the next step because this one is a prop, set it up.
 			var moveImmediate = step.isprop ? next : undefined;
+			var forward = true;
             
             if ( activeStep ) {
-                activeStep.classList.remove("active");
-                body.classList.remove("impress-on-" + activeStep.id);
+				// LLD - there was a mimiced step, so fix things for it, not the actual active one.
+				var as = activeStep.dataset.mimic && activeStep.dataset.mimic != '' ? getStep(activeStep.dataset.mimic) : activeStep;
+				var asData = stepsData["impress-" + as.id];
 				
-				// LLD - set up the direction we're supposed to go in if we are to move
-				if (moveImmediate !== undefined) 
-				{
 					var asi = stepsData["impress-" + activeStep.id].index;
 					var rsi = stepsData["impress-" + realStep.id].index;
-					moveImmediate = asi < rsi ? next : prev;
+				forward = asi < rsi;
+				var stepInRange = function(sc,s) {
+					if (sc <= 0) return false;
+					var inRange = (
+						(forward && (s >= 1 && s < sc))
+						||
+						(!forward && (s > 1 && s <= sc))
+					);
+					console.log('inRange = ' + inRange);
+					return inRange;
+				};
+				console.log('has ' + asData.substeps + 
+					' substeps, current = ' + asData.substep + 
+					' moving ' + (forward ? 'forward' : 'backward') +
+					' in range = ' + stepInRange(asData.substeps, asData.substep)
+				);
+				// LLD - if we have substeps and this isn't the first one, then keep doing them.
+				// TODO - figure out if we are moving forward or back and adjust step.
+				if (stepInRange(asData.substeps, asData.substep))
+				{
+					console.log('moving from substep ' + asData.substep + ' to ' + (asData.substep + (forward ? 1 : -1)));
+					as.classList.remove("substep" + asData.substep);
+					asData.substep += (forward ? 1 : -1); // move forward or backward
+					if (asData.substep > 0 && asData.substep <= asData.substeps) 
+					{
+						as.classList.add("substep" + asData.substep);
+						options.onSubStepEnter(as, asData.substep, forward);
+					}
+					return true;
+            			}
+				else
+				{
+					as.classList.remove("active");
+					body.classList.remove("impress-on-" + as.id);
+					if (asData.group) body.classList.remove("impress-group-" + asData.group);
+					asData.substep = forward ? 1 : asData.substeps;
+			
+					// LLD - set up the direction we're supposed to go in if we are to move
+					if (typeof(moveImmediate) !== 'undefined') moveImmediate = forward ? next : prev;
 				}
             }
-			
-			var willMoveImmediate = typeof(moveImmediate) !== 'undefined';
-			
+	    var willMoveImmediate = typeof(moveImmediate) !== 'undefined';
             el.classList.add("active");
             
             body.classList.add("impress-on-" + el.id);
+			if (step.group) body.classList.add("impress-group-" + step.group); //LLD
+			if (step.substeps > 0) { //LLD
+				step.substep = forward ? 1 : parseInt(step.substeps);
+				el.classList.add("substep" + step.substep);
+				if ((forward && step.substep > 1) || !forward) options.onSubStepEnter(el, step.substep, forward);
+				console.log('init substeps at ' + step.substep);
+			}
             
             // compute target state of the canvas based on given step
             var target = {
@@ -546,7 +612,7 @@
             
             // store current state
             currentState = target;
-            activeStep = el;
+            activeStep = realStep.id != el.id ? realStep : el; // set the active step or the mimic if need be
             
             // And here is where we trigger `impress:stepenter` event.
             // We simply set up a timeout to fire it taking transition duration (and possible delay) into account.
@@ -657,7 +723,11 @@
             init: init,
             goto: goto,
             next: next,
-            prev: prev
+            prev: prev,
+            css: css,
+            $: $,
+            $$: $$,
+            computeWindowScale: computeWindowScale
         });
 
     };

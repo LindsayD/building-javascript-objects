@@ -73,14 +73,14 @@
     <meta name="description" content="Building JavaScript Objects presentation for TechFest 2104" />
     <meta name="author" content="Lindsay Donaghe" />
 
-	<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,900' rel='stylesheet' type='text/css' />
+	<link href='http://fonts.googleapis.com/css?family=Engagement|Source+Sans+Pro:400,700,900' rel='stylesheet' type='text/css' />
 	<link href="http://img2.wsimg.com/ux/1.1.4/css/uxcore.min.css" rel="stylesheet" type="text/css" />
-    <link href="css/impress.css" rel="stylesheet" />
     
     <link rel="shortcut icon" href="favicon.png" />
     <link rel="apple-touch-icon" href="apple-touch-icon.png" />
 	
-	<script src="scripts/ace.js" type="text/javascript" charset="utf-8"></script>
+	<script src="http://rawgithub.com/ajaxorg/ace-builds/master/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+	<link href="css/impress.css" rel="stylesheet" />
 </head>
 
 <!--
@@ -152,168 +152,542 @@
     -->
 	
     <div id="start" class="step" data-x="0" data-y="0" data-scale="1" >
-        <div style="line-height: 350px; height: 350px; margin-top: -150px;"><div class="heading-text" style="width:100%;font-size:137%;padding-top:30px;">Building JavaScript Objects</div></div>
+		<img src="images/titlepage.gif" style="display: block; position: absolute; width:100%; top: -60px; left: -40px;" />
+        <div style="line-height: 350px; height: 350px; margin-top: -180px; margin-left: 190px;"><div class="heading-text" style="width:100%;font-size:180%;padding-top:30px;">Building JavaScript Objects</div></div>
     </div>
 	
-	<div id="lindsay" class="step" data-x="0" data-y="0" data-scale="1" data-z="-800">
-        <div style="height: 480px; width: 100%; text-align:center;">
-				<img src="images/ijquery.jpeg" style="width: 60%" />
-				<div class="smaller-text">Lindsay "I really like JavaScript" Donaghe</div>
-        </div>
+	<div id="lindsay" style="text-align: center" class="step" data-x="-500" data-y="-100" data-scale="1" data-z="-800">
+		<img src="images/ijquery.jpeg" style="width: 60%" />
+		<div class="smaller-text bold-text">Lindsay <span class="curvy">"I really like JavaScript"</span> Donaghe</div>
     </div>
 	
 	<div id="freedom" class="step" data-x="0" data-y="0" data-scale="1" data-z="-800">
-        <div style="height: 480px; width: 100%;">
-			<blockquote>
-				<p>JavaScript has something that other languages lack: <strong>a sense of Freedom</strong>.</p>
-				<small>Eric Elliott</small>
-			</blockquote>
-			<div style="text-align: center;">
-				<img src="images/whateverllamabig.jpg" />
-			</div>
-        </div>
+		<div style="margin-left: 20px; height: 240px;padding: 30px 60px 20px 200px; width: 720px; position: relative; background: url(images/ikeaDudeTalks.gif) no-repeat;">
+			<div style="font-size: 70%;line-height:1.2em;">JavaScript has something that other languages lack:</div>
+			<div class="curvy" style="font-size: 120%; text-align: center; line-height:1.3em; ">a sense of Freedom.</div>
+			<div style="font-size: 50%; text-align: right; margin-top:-10px;"> - Eric Elliott</div>
+		</div>
     </div>
-	
-	<div id="logoprop" class="step intro-prop" data-isprop="true" data-x="0" data-y="0" data-scale="1" data-z="-400">
-		<div style="height: 480px; width: 100%">
-            <img src="images/uxcorelogo.png" style="display: block; position: absolute; width:100%; top: -50px; left: 0;" />
-        </div>
-	</div>
 
-    <div id="history" class="step intro" data-x="0" data-y="0" data-scale="1" data-z="-400">
-        <div style="height: 480px; width: 100%">
-            <div class="heading-text" style="margin-top: 80px;">A Brief History of</div>
+    <div id="whatever" class="step" data-x="0" data-y="0" data-scale="1" data-z="-800">
+        <div style="text-align: center;position: relative;">
+            <div class="smaller-text bold-text" style="position: absolute; top: -60px; left:0px; text-align: center; width:  100%;">With great freedom...</div>
+            <div class="pic"><img src="images/whateverllamabig.jpg" style="width:550px;" /></div>
         </div>
     </div>
 
-    <div id="duel" class="step intro" data-x="500" data-y="380" data-scale="1" data-z="1100">
-        <div style="height: 480px; width: 100%">
-            <div class="smaller-text" style="margin-left: 380px; text-align: right;margin-top: 20%;">... the successor to DUEL</div>
-			<div class="bold-text" style="margin-left: 10px; margin-top: 200px; line-height: 1em;">Same purpose, new implementation.</div>
+    <div id="codeDefensive" class="step" data-x="0" data-y="0" data-scale="1" data-z="-800">
+        <div style="text-align: center; position:relative;">
+            <div class="smaller-text bold-text" style="position: absolute; top: -60px; left:0px; text-align: center; width:  100%;">... comes great responsibility.</div>
+            <div class="pic"><img src="images/code-defensively.jpg" style="width:550px;"  /></div>
         </div>
     </div>
 	
-	<div id="updatesFromDuel" class="step intro" data-x="500" data-y="380" data-scale="1" data-z="1100">
-        <div style="height: 480px; width: 100%">
-			<div id="gist"></div>
+	<div id="start2" class="step" data-mimic="start" ></div>
+
+    <div id="objects" class="step only-group-objects" data-group="objects" style="text-align: center" data-x="0" data-y="500" data-scale="1" data-z="-400">
+        <div class="heading"><span>Objects</span></div>
+    </div>
+
+    <div id="objectsSummary" class="step objects" data-group="objects" data-x="0" data-y="100" data-scale="1" data-z="200">
+        <div class="summary-list">
+            <ul>
+                <li class="list-heading">An Object:</li>
+                <li>Represents an instance of a "thing"</li>
+                <li>Stores state (adjectives) about the thing</li>
+                <li>Provides actions (verbs) to interact or change state</li>
+                <li>!= a Class</li>
+            </ul>
         </div>
     </div>
 
-    <div id="goals" class="step intro" data-x="500" data-y="380" data-scale="1" data-z="1100">
-        <div style="height: 480px; width: 100%">
-            <div class="heading-text" style="margin-left: 390px; margin-top: 10%;">Goals:</div>
-			<div class="smaller-text" style="margin-left: 30px;margin-top: 150px; line-height: 1em;"><span style="padding-right: 20px" class="uxicon uxicon-rabbit"></span>Streamline application UI development.</div>
-			<div class="smaller-text" style="margin-left: 30px;margin-top: 20px; line-height: 1em;"><span style="padding-right: 20px" class="uxicon uxicon-airplane"></span>Keep UX and Dev on the same page.</div>
+    <div id="literals" class="step only-group-literals" data-group="literals" style="text-align: center" data-x="0" data-y="500" data-scale="1" data-z="-400">
+        <div class="heading"><span>Object Literals</span></div>
+    </div>
+
+    <div id="literalVar" class="step code literals" data-group="literals" data-x="-350" data-y="1000" data-scale="1" data-z="200">
+        <div class="code-holder">
+            <div class="ace" style="width: 100%;">var person = {};</div>
         </div>
     </div>
 	
-	<div id="today" class="step intro" data-x="500" data-y="380" data-scale="1" data-z="1100">
-        <div style="height: 480px; width: 100%">
-            <div class="heading-text" style="margin-left: 390px; margin-top: 10%;">Today:</div>
-			<div class="smaller-text" style="margin-left: 30px;margin-top: 150px; line-height: 1em;"><span style="padding-right: 20px" class="uxicon uxicon-pulse"></span>XX projects are active users.</div>
-			<div class="smaller-text" style="margin-left: 30px;margin-top: 20px; line-height: 1em;"><span style="padding-right: 20px" class="uxicon uxicon-fire"></span>X projects are implementing.</div>
-			<div class="smaller-text" style="margin-left: 30px;margin-top: 20px; line-height: 1em;"><span style="padding-right: 20px" class="uxicon uxicon-sight"></span>X projects have plans to implement.</div>
+	<div id="literalAddProps" class="step code literals" data-group="literals" data-x="-350" data-y="1000" data-scale="1" data-z="200">
+        <div class="code-holder">
+            <div class="ace" style="width: 100%;">var person = {};
+
+person.name = 'Daenerys';
+person.weapon = 'dragons';
+person.brandish = function() { 
+	alert(this.name + ' brings forth ' + this.weapon); 
+};</div>
         </div>
     </div>
 
-    <div id="pieces" class="step pieces" data-x="0" data-y="0" data-scale="1" data-z="-400">
-        <div style="height: 480px; width: 100%">
-            <div class="heading-text" style="margin-top: 80px;">The Pieces of</div>
-        </div>
-    </div>
-	<div id="pieceslist" class="step pieces" data-x="0" data-y="0" data-scale="1" data-z="-400">
-        <div style="height: 480px; width: 100%">
-            <div class="heading-text" style="margin-top: 80px;">The Pieces of</div>
-			<div style="margin-left: 430px; margin-top: 220px"><span style="padding-right: 20px" class="smaller-text uxicon uxicon-brush-pencil"></span>Styles</div>
-			<div style="margin-left: 430px; margin-top: -10px;"><span style="padding-right: 20px;" class="uxicon uxicon-create-btn"></span>Controls</div>
-			<div style="margin-left: 430px; margin-top: -10px;"><span style="padding-right: 20px" class="uxicon uxicon-serve"></span>Delivery System</div>
-			<div style="margin-left: 430px; margin-top: -10px;"><span style="padding-right: 20px" class="uxicon uxicon-lightning"></span>Build</div>
-        </div>
-    </div>
-	
-	<div id="logo" class="step pieces-prop" data-isprop="true" data-x="0" data-y="0" data-scale="1" data-z="-1600">
-        <div style="height: 480px; width: 100%; text-align: center;">
-			<div style="position: absolute; width:100%; top: -125%; right: 95%; position: relative;">
-				<img src="images/uxcorelogodetail.png" style="display: block;position: absolute;" />
-			</div>
+    <div id="literalDeleteProps" class="step code literals" data-group="literals" data-x="-350" data-y="1000" data-scale="1" data-z="200">
+        <div class="code-holder">
+            <div class="ace" style="width: 100%;">var person = {};
+
+person.name = 'Daenerys';
+person.weapon = 'dragons';
+person.brandish = function() {
+    alert(this.name + ' brings forth ' + this.weapon);
+};
+
+delete person.weapon;</div>
         </div>
     </div>
 
-	<div id="styles" class="step pieces" data-x="-400" data-y="-350" data-scale="1" data-z="-1590">
-        <div style="height: 480px; width: 100%">
-			<div style="" class="heading-text">
-				<span style="padding-right: 20px" class="smaller-text uxicon uxicon-brush-pencil"></span>Styles
-			</div>
-			<div style="position: absolute; width:100%; top: -125%; right: 95%; position: relative;">
-				<span style="display: block; font-size: 500%;top:965px; left: 1605px; position: absolute;" class="uxicon uxicon-brush-pencil"></span>
-			</div>
+    <div id="literalObjCreate" class="step code literals" data-group="literals" data-x="-350" data-y="1000" data-scale="1" data-z="200">
+        <div class="code-holder">
+            <div class="ace" style="width: 100%;">var person = Object.create();
+
+person.name = 'Daenerys';
+person.weapon = 'dragons';
+person.brandish = function() {
+    alert(this.name + ' brings forth ' + this.weapon);
+};</div>
         </div>
     </div>
 	
-	<div id="controls" class="step pieces" data-x="700" data-y="-350" data-scale="1" data-z="-1590">
-        <div style="height: 480px; width: 100%">
-			<div class="heading-text" style="text-align:right;width: 100%;">
-				<span style="padding-right: 20px" class="smaller-text uxicon uxicon-create-btn"></span>Controls
-			</div>
-			<div style="position: absolute; width:100%; top: -125%; right: 95%; position: relative;">
-				<span style="display: block; font-size: 500%;top:965px; left: 515px; position: absolute;" class="uxicon uxicon-create-btn"></span>
-			</div>
+	<div id="literalsMore" class="step code literals" data-group="literals" data-x="-350" data-y="1000" data-scale="1" data-z="200">
+        <div class="code-holder">
+            <div class="ace" style="width: 100%;">var person1 = {};
+
+person1.name = 'Daenerys';
+person1.weapon = 'dragons';
+person1.brandish = brandish;
+
+var person2 = {};
+
+person2.name = 'Tyrion';
+person2.weapon = 'an axe';
+person2.brandish = brandish;</div>
+        <div class="ace" style="width: 100%; margin-top: 20px;">function brandish() {
+    alert(this.name + ' brings forth ' + this.weapon);
+}</div>
         </div>
     </div>
 	
-	<div id="pc" class="step pieces" data-x="700" data-y="350" data-scale="1" data-z="-1590">
-        <div style="height: 480px; width: 100%">
-			<div class="heading-text" style="text-align:right;width: 100%;">
-				<span style="padding-right: 20px" class="smaller-text uxicon uxicon-serve"></span>Delivery System
-			</div>
-			<div style="position: absolute; width:100%; top: -125%; right: 95%; position: relative;">
-				<span style="display: block; font-size: 500%;top:265px; left: 515px; position: absolute;" class="uxicon uxicon-serve"></span>
-			</div>
+	<div id="literalsCompact" class="step code literals" data-group="literals" data-x="-350" data-y="1000" data-scale="1" data-z="200">
+        <div class="code-holder">
+            <div class="ace" style="width: 100%;">var person1 = {};
+person1.name = 'Daenerys';
+person1.weapon = 'dragons';
+person1.brandish = brandish;
+
+var person2 = {};			
+person2.name = 'Tyrion';
+person2.weapon = 'an axe';
+person2.brandish = brandish;
+
+var person3 = {	
+	name: 'Anya', 
+	weapon: 'Needle',	
+	brandish: brandish 
+};</div>
+           <div class="ace" style="width: 100%; margin-top: 20px;">function brandish() {
+    alert(this.name + ' brings forth ' + this.weapon);
+}</div>
         </div>
     </div>
 	
-	<div id="build" class="step pieces" data-x="-400" data-y="350" data-scale="1" data-z="-1590">
-        <div style="height: 480px; width: 100%">
-			<div class="heading-text">
-				<span style="padding-right: 20px" class="smaller-text uxicon uxicon-lightning"></span>Build
-			</div>
-			<div style="position: absolute; width:100%; top: -125%; right: 95%; position: relative;">
-				<span style="display: block; font-size: 500%;top:265px; left: 1605px; position: absolute;" class="uxicon uxicon-lightning"></span>
-			</div>
+	<div id="literalsMoreCompact" class="step code literals" data-group="literals" data-x="-350" data-y="1000" data-scale="1" data-z="200">
+        <div class="code-holder">
+            <div class="ace" style="width: 100%;">var person1 = {};
+person1.name = 'Daenerys';
+person1.weapon = 'dragons';
+person1.brandish = brandish;
+
+var person2 = {};			
+person2.name = 'Tyrion';
+person2.weapon = 'an axe';
+person2.brandish = brandish;
+
+var person3 = {	
+	name: 'Anya', 
+	weapon: 'Needle',	
+	brandish: brandish 
+};
+
+var person4 = {	
+	name: 'John', 
+	weapon: 'that curly hair', 
+	brandish: brandish
+};</div>
+        </div>
+    </div>
+	
+	<div id="literalsEvenMoreCode" class="step code literals" data-isprop="true" data-group="literals" data-x="-350" data-y="1000" data-scale="1" data-z="200">
+        <div class="code-holder">
+            <div class="ace" style="width: 100%;">var person1 = {};
+person1.name = 'Daenerys';
+person1.weapon = 'dragons';
+person1.brandish = brandish;
+
+var person2 = {};			
+person2.name = 'Tyrion';
+person2.weapon = 'an axe';
+person2.brandish = brandish;
+
+var person3 = {	
+	name: 'Anya', 
+	weapon: 'Needle',	
+	brandish: brandish 
+};
+var person4 = {	
+	name: 'John', 
+	weapon: 'that curly hair', 
+	brandish: brandish
+};
+var person5 = {	
+	name: 'Brienne', 
+	weapon: 'Oathkeeper', 
+	brandish: brandish
+};
+</div>
         </div>
     </div>
 
-	<div id="future" class="step pieces" data-x="0" data-y="0" data-scale="1" data-z="-400">
-        <div style="height: 480px; width: 100%">
-            <div class="heading-text" style="margin-top: 80px;">The Future of</div>
+    <div id="literalsEvenMore" class="step code literals" data-group="literals" data-x="-350" data-y="1000" data-scale="1" data-z="300"></div>
+
+    <div id="literalsExtremeMoreCode" class="step code literals" data-isprop="true" data-group="literals" data-x="-350" data-y="1000" data-scale="1" data-z="200">
+        <div class="code-holder">
+            <div class="ace" style="width: 100%;">var person1 = {};
+person1.name = 'Daenerys';
+person1.weapon = 'dragons';
+person1.brandish = brandish;
+
+var person2 = {};
+person2.name = 'Tyrion';
+person2.weapon = 'an axe';
+person2.brandish = brandish;
+
+var person3 = {
+    name: 'Anya',
+    weapon: 'Needle',
+    brandish: brandish
+};
+var person4 = {
+    name: 'John',
+    weapon: 'that curly hair',
+    brandish: brandish
+};
+var person5 = {
+    name: 'Brienne',
+    weapon: 'Oathkeeper',
+    brandish: brandish
+};
+var person6 = {
+    name: 'The Hound',
+    weapon: 'chicken',
+    brandish: brandish
+};
+var person7 = {
+    name: 'Varys',
+    weapon: 'whispers',
+    brandish: brandish
+};
+var person8 = {
+    name: 'Samwell',
+    weapon: 'obsidian knife',
+    brandish: brandish
+};
+var person9 = {
+    name: 'Ghost',
+    weapon: 'teeth',
+    brandish: brandish
+};
+var person10 = {
+    name: 'Podrick',
+    weapon: 'his unassuming charm',
+    brandish: brandish
+};
+var person11 = {
+    name: 'Sansa',
+    weapon: 'her disillusionment',
+    brandish: brandish
+};
+</div>
         </div>
     </div>
-	
-	<div id="you" class="step pieces" data-x="0" data-y="0" data-scale="1" data-z="-400">
-        <div style="height: 480px; width: 100%; position: relative;">
-			<div style="width: 100%; position: absolute;">
-				<span style="display: block; font-size: 180%;top:-135px; left: 52%; position: absolute;" class="uxicon uxicon-users"></span>
-			</div>
-			<div class="heading-text" style="margin-top: 630px; margin-left: 520px;">... and YOU.</div>
+
+    <div id="literalsExtremeMore" class="step code literals" data-group="literals" data-x="-350" data-y="1100" data-scale="1" data-z="700"></div>
+
+    <div id="literalsSummary" class="step code literals" data-group="literals" data-x="0" data-y="100" data-scale="1" data-z="200">
+        <div class="summary-list">
+            <ul>
+                <li class="list-heading">Object Literals are:</li>
+                <li>Fundamental even to other patterns</li>
+                <li>Easy to create</li>
+                <li>Easy to extend instances</li>
+                <li>Cumbersome to create many of the same type</li>
+                <li>Cumbersome to extend many in the same way</li>
+                <li>Unable to keep data private</li>
+                <li>Unable to indicate an API</li>
+                <li>Can introduce namespace conflicts</li>
+                <li>Can cause problems with pointers vs values</li>
+            </ul>
         </div>
     </div>
-	
-	<div id="more" class="step intro" data-x="-100" data-y="-360" data-scale="1" data-z="-400">
-        <div style="height: 480px; width: 100%">
-			<div class="smaller-text" style="margin-left: 30px;line-height: 1em;"><span style="padding-right: 20px" class="uxicon uxicon-plug"></span><span class="heading-text">Implement:</span> <br/><div style="margin-left: 65px">Upgrade from DUEL, use Presentation Central.</div></div>
-			<div class="smaller-text" style="margin-left: 30px;margin-top: 20px; line-height: 1em;"><span style="padding-right: 20px" class="uxicon uxicon-blog-lines"></span><span class="heading-text">Give Feedback:</span> <div style="margin-left: 65px">Report bugs, ask for features, provide suggestions.</div></div>
-			<div class="smaller-text" style="margin-left: 30px;margin-top: 20px; line-height: 1em;"><span style="padding-right: 20px" class="uxicon uxicon-plus"></span><span class="heading-text">Contribute:</span> <br/><div style="margin-left: 65px">Fork and submit pull requests on our GitHub repo.</div></div>
+
+    <div id="extension" class="step extension-heading only-group-extension" data-group="extension" style="text-align: center" data-x="0" data-y="500" data-scale="1" data-z="-400">
+        <div class="heading"><span>Object Extension</span></div>
+    </div>
+
+    <div id="objectsAsData" class="step code extension" data-group="extension" data-x="-350" data-y="1000" data-scale="1" data-z="200">
+        <div class="code-holder">
+            <div class="ace" style="width: 100%"> var person1Data = {
+    name: 'Daenerys',
+    gender: 'female',
+    weapon: 'dragons',
+    location: 'Mureen',
+    house: 'Targaryen'
+};
+</div>
+            <div class="ace" style="width: 100%;margin-top: 20px;">var person1 = person1Data;</div>
         </div>
     </div>
-	
-	<div id="wrapup" class="step intro" data-x="-100" data-y="+360" data-scale="1" data-z="-400">
-        <div style="height: 480px; width: 100%">
-			<div class="smaller-text" style="margin-left: 30px;line-height: 1em;"><span style="padding-right: 20px" class="uxicon uxicon-create-btn"></span><span class="heading-text">Controls:</span> <br/><div style="margin-left: 65px">http://<span class="emphasis">controls</span>.uxcore.int.godaddy.com</div></div>
-			<div class="smaller-text" style="margin-left: 30px;margin-top: 20px; line-height: 1em;"><span style="padding-right: 20px" class="uxicon uxicon-brush-pencil"></span><span class="heading-text">Styles:</span> <div style="margin-left: 65px">http://<span class="emphasis">styles</span>.uxcore.int.godaddy.com</div></div>
-			<div class="smaller-text" style="margin-left: 30px;margin-top: 20px; line-height: 1em;"><span style="padding-right: 20px" class="uxicon uxicon-serve"></span><span class="heading-text">Presentation Central:</span> <br/><div style="margin-left: 65px">http://uxcore.int.godaddy.com<span class="emphasis">/pc</span></div></div>
-			<div class="smaller-text" style="margin-left: 30px;margin-top: 20px; line-height: 1em;"><span style="padding-right: 20px" class="uxicon uxicon-help"></span><span class="heading-text">Support:</span> <br/><div style="margin-left: 65px">http://uxcore.int.godaddy.com<span class="emphasis">/support</span></div></div>
+
+    <div id="dataExtension" class="step code extension" data-group="extension" data-x="-350" data-y="1000" data-scale="1" data-z="200">
+        <div class="code-holder">
+            <div class="ace" style="width: 100%">var personDefaults = {
+    gender: 'female',
+    location: "King's Landing",
+    house: 'Lannister'
+};
+
+
+            </div>
+
+            <div class="ace" style="width: 100%;margin-top: 20px;">var person1 = _.extend(
+    {},                         // ensure a fresh instance
+    personDefaults,
+    person1Data
+);</div>
         </div>
     </div>
+
+    <div id="mixins" class="step code extension" data-group="extension" data-x="-350" data-y="1000" data-scale="1" data-z="200">
+        <div class="code-holder">
+            <div class="ace" style="width: 100%;">var personActions = {
+    getHouse: function() { return this.house; }
+    brandish: function() { ... },
+    scheme: function() { ... }
+};
+
+
+            </div>
+
+            <div class="ace" style="width: 100%;margin-top: 20px;">var person1 = _.extend(
+    {},                         // ensure a fresh instance
+    personDefaults,
+    person1Data,
+    personActions
+);</div>
+
+        </div>
+    </div>
+
+    <div id="extensionResult" class="step code extension" data-group="extension" data-x="-350" data-y="1000" data-scale="1" data-z="200">
+        <div class="code-holder">
+            <div class="ace" style="width: 100%">var person1 = _.extend({}, personDefaults, person1Data, personActions);</div>
+            <div class="ace" data-size="smaller" style="width: 100%;margin-top: 20px;">// person 1
+{
+    name: 'Daenerys',
+    gender: 'female',
+    weapon: 'dragons',
+    location: 'Mureen',
+    house: 'Targaryen',
+    getHouse: function() {...},
+    brandish: function() {...},
+    scheme: function() {...}
+}
+</div>
+            <div class="ace" data-size="smaller" style="width: 100%;margin-top: 20px;">var person2 = _.extend({}, personDefaults, person2Data, personActions);
+var person3 = _.extend({}, personDefaults, person3Data, personActions);
+var person4 = _.extend({}, personDefaults, person4Data, personActions);
+var person5 = _.extend({}, personDefaults, person5Data, personActions);
+var person6 = _.extend({}, personDefaults, person6Data, personActions);
+var person7 = _.extend({}, personDefaults, person7Data, personActions);
+var person8 = _.extend({}, personDefaults, person8Data, personActions);
+var person9 = _.extend({}, personDefaults, person9Data, personActions);
+var person10 = _.extend({}, personDefaults, person10Data, personActions);
+...</div>
+        </div>
+    </div>
+
+    <div id="extensionSummary" class="step code extension" data-group="extension" data-x="0" data-y="200" data-scale="1" data-z="-100">
+        <div class="summary-list">
+            <ul>
+                <li class="list-heading">Object Extension</li>
+                <li>Facilitates composition of functionality (Mixins)</li>
+                <li>Facilitates composition of data</li>
+                <li>Provides means to specify defaults</li>
+                <li>Still cumbersome to create many of the same type</li>
+                <li>Still no way to keep data private</li>
+                <li>Provides composition API definition*</li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="modules" class="step module-heading only-group-modules" data-group="modules" style="text-align: center" data-x="0" data-y="500" data-scale="1" data-z="-400">
+        <div class="heading"><span>Module Constructors</span></div>
+    </div>
+
+    <div id="factory" class="step code modules" data-group="modules" data-x="-350" data-y="1000" data-scale="1" data-z="200">
+        <div class="code-holder">
+            <div class="ace" style="width: 100%;">var person1 = personFactory(person1Data);</div>
+        </div>
+    </div>
+
+    <div id="modulePattern" class="step code modules" data-group="modules" data-x="-350" data-y="1000" data-scale="1" data-z="200">
+        <div class="code-holder">
+            <div class="ace" style="width: 100%;margin-top: 20px;">var personFactory = (function(personData) {
+    var personDefaults = { ... };
+    function getHouse() { ... }
+    function brandish() { ... }
+    function scheme() { ... }
+
+    var person = _.extend({
+            getHouse: getHouse,
+            brandish: brandish,
+            scheme: scheme
+        },
+        personDefaults,
+        personData
+    });
+
+    return person; // composed object: data, defaults, methods
+)();</div>
+
+        </div>
+    </div>
+
+    <div id="privateVars" class="step code modules" data-group="modules" data-x="-350" data-y="1000" data-scale="1" data-z="200">
+        <div class="code-holder">
+            <div class="ace" style="width: 100%;margin-top: 20px;">var personFactory = (function(personData) {
+    var personDefaults = { ... };
+    var isDeadYet = false;
+    /* functions go here */
+
+    return _.extend({
+            /* public functions ... */
+            isDeadYet: isDeadYet
+        },
+        personDefaults,
+        personData
+    }); // composed object: data, defaults, methods
+)();</div>
+
+        </div>
+    </div>
+
+    <div id="privateVarsGetter" class="step code modules" data-group="modules" data-x="-350" data-y="1000" data-scale="1" data-z="200">
+        <div class="code-holder">
+            <div class="ace" style="width: 100%;margin-top: 20px;">var personFactory = (function(personData) {
+    var personDefaults = { ... };
+    var isDeadYet = false;
+    /* functions go here */
+
+    return _.extend({
+            /* public functions ... */
+            isDeadYet: function(val) {
+                return isDeadYet;
+            };
+        },
+        personDefaults,
+        personData
+    }); // composed object: data, defaults, methods
+)();</div>
+
+        </div>
+    </div>
+    <div id="privateVarsSetter" class="step code modules" data-group="modules" data-x="-350" data-y="1000" data-scale="1" data-z="200">
+        <div class="code-holder">
+            <div class="ace" style="width: 100%;margin-top: 20px;">var personFactory = (function(personData) {
+    var personDefaults = { ... };
+    var isDeadYet = false;
+    /* functions go here */
+
+    return _.extend({
+            /* public functions ... */
+            isDeadYet: function(val) {
+                if (val) isDeadYet = val;
+                return isDeadYet
+            };
+        },
+        personDefaults,
+        personData
+    }); // composed object: data, defaults, methods
+)();</div>
+
+        </div>
+    </div>
+
+    <div id="modulesSummary" class="step code modules" data-group="modules" data-x="0" data-y="100" data-scale="1" data-z="200">
+        <div class="summary-list">
+            <ul>
+                <li class="list-heading">Module Pattern Construction</li>
+                <li>Still facilitates composition of functionality (Mixins)</li>
+                <li>Still facilitates composition of data</li>
+                <li>Still provides means to specify defaults</li>
+                <li>Makes it easy to create many of the same type</li>
+                <li>Gives ability to keep data private</li>
+                <li>Provides composition API and "intentional" API*</li>
+                <li>May consume more memory because a closure is created for each construction.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="prototypes" class="step prototypes-heading only-group-prototypes" data-group="prototypes" style="text-align: center" data-x="0" data-y="500" data-scale="1" data-z="-400">
+        <div class="heading"><span>Prototype Inheritance</span></div>
+    </div>
+
+    <div id="favorComposition" class="step" data-x="0" data-y="0" data-scale="1" data-z="-800">
+        <div style="margin-left: 20px; height: 240px;padding: 30px 60px 20px 200px; width: 720px; position: relative; background: url(images/ikeaDudeTalks.gif) no-repeat;">
+            <div style="font-size: 70%;line-height:1.2em;">Favor object composition over class inheritance.</div>
+            <div style="font-size: 50%; text-align: right; margin-top:50px;"> - the Gang of Four, <em>Design Patterns</em></div>
+        </div>
+    </div>
+
+    <div id="breakTheRules" class="step" data-group="prototypes" data-x="0" data-y="0" data-scale="1" data-z="-800">
+        <div style="text-align: center; position:relative;">
+            <div class="pic"><img src="images/no-dogs-allowed.jpg" style="width:550px;"  /></div>
+        </div>
+    </div>
+
+    <div id="patience" class="step" data-group="prototypes" data-x="0" data-y="0" data-scale="1" data-z="-800">
+        <div style="text-align: center; position:relative;">
+            <div class="smaller-text bold-text" style="position: absolute; top: -60px; left:0px; text-align: center; width:  100%;"></div>
+            <div class="pic"><img src="images/treatstack.jpg" style="width:350px;"  /></div>
+        </div>
+    </div>
+
+    <div id="prototypesSummary" class="step code prototypes" data-group="prototypes" data-x="0" data-y="100" data-scale="1" data-z="200">
+        <div class="summary-list">
+            <ul>
+                <li class="list-heading">Prototype Inheritance</li>
+                <li>Provides instant extension of instances</li>
+                <li>Still facilitates composition of data</li>
+                <li>Still provides means to specify defaults</li>
+                <li>Makes it easy to create many of the same type</li>
+                <li>Unable to keep data private</li>
+                <li>Provides a concrete API (and "type" checking)</li>
+                <li>Cannot protect from API modification at runtime</li>
+                <li>Hierachies can get ugly</li>
+                <li>Saves memory because the prototype defined once</li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="wrapup" class="step" data-x="0" data-y="0" data-scale="1" data-z="0">
+        <div style="text-align: center; position:relative;">
+            <div class="smaller-text bold-text" style="position: absolute; top: -60px; left:0px; text-align: center; width:  100%;">Questions?</div>
+            <div class="pic"><img src="images/spacegoat.jpg" style="width:450px;"  /></div>
+        </div>
+    </div>
+</div>
+
 </div>
 
 <div class="hint">
@@ -328,108 +702,9 @@ if ("ontouchstart" in document.documentElement) {
 <script src="http://img2.wsimg.com/ux/1.1.4/js/uxcore.en.min.js"></script>
 <script src="js/impress.js"></script>
 <script src="js/BuildingJavaScriptObjects.js"></script>
-<script>
-/*
-impress(undefined, {
-	onStepEnter: function(step) { if (window[step.id + 'Action'] !== undefined) window[step.id + 'Action'](step); }
-}).init();
 
-
-function add_stylesheet_once( url ){
-	$head = $('head');
-	if( $head.find('link[rel="stylesheet"][href="'+url+'"]').length < 1 )
-		$head.append('<link rel="stylesheet" href="'+ url +'" type="text/css" />');
-}
-
-function loadGist(url) {
-	$.ajax({ 
-		url: url, 
-		dataType: 'jsonp', 
-		success: function(gist) {
-			//console.log(gist.repo, ' (' + gist.description + ') :');
-			//console.log(gist.div);
-			//console.log(gist.stylesheet);
-			add_stylesheet_once( gist.stylesheet );
-			//document.getElementById('gist').innerHTML = gist.div;
-			$('#gist').html(gist.div);
-		}
-	});
-}
-
-loadGist('https://github.secureserver.net/gist/ldonaghe/fa5e6a15b3a3bec939cf.json');
-*/
-</script>
-
-<!--
-    
-    The `impress()` function also gives you access to the API that controls the presentation.
-    
-    Just store the result of the call:
-    
-        var api = impress();
-    
-    and you will get three functions you can call:
-    
-        `api.init()` - initializes the presentation,
-        `api.next()` - moves to next step of the presentation,
-        `api.prev()` - moves to previous step of the presentation,
-        `api.goto( idx | id | element, [duration] )` - moves the presentation to the step given by its index number
-                id or the DOM element; second parameter can be used to define duration of the transition in ms,
-                but it's optional - if not provided default transition duration for the presentation will be used.
-    
-    You can also simply call `impress()` again to get the API, so `impress().next()` is also allowed.
-    Don't worry, it wont initialize the presentation again.
-    
-    For some example uses of this API check the last part of the source of impress.js where the API
-    is used in event handlers.
-    
--->
 
 </body>
 </html>
 
-<!--
-    
-    Now you know more or less everything you need to build your first impress.js presentation, but before
-    you start...
-    
-    Oh, you've already cloned the code from GitHub?
-    
-    You have it open in text editor?
-    
-    Stop right there!
-    
-    That's not how you create awesome presentations. This is only a code. Implementation of the idea that
-    first needs to grow in your mind.
-    
-    So if you want to build great presentation take a pencil and piece of paper. And turn off the computer.
-    
-    Sketch, draw and write. Brainstorm your ideas on a paper. Try to build a mind-map of what you'd like
-    to present. It will get you closer and closer to the layout you'll build later with impress.js.
-    
-    Get back to the code only when you have your presentation ready on a paper. It doesn't make sense to do
-    it earlier, because you'll only waste your time fighting with positioning of useless points.
-    
-    If you think I'm crazy, please put your hands on a book called "Presentation Zen". It's all about 
-    creating awesome and engaging presentations.
-    
-    Think about it. 'Cause impress.js may not help you, if you have nothing interesting to say.
-    
--->
-
-<!--
-    
-    Are you still reading this?
-    
-    For real?
-    
-    I'm impressed! Feel free to let me know that you got that far (I'm @bartaz on Twitter), 'cause I'd like
-    to congratulate you personally :)
-    
-    But you don't have to do it now. Take my advice and take some time off. Make yourself a cup of coffee, tea,
-    or anything you like to drink. And raise a glass for me ;)
-    
-    Cheers!
-    
--->
 
