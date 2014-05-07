@@ -570,7 +570,7 @@ var person10 = _.extend({}, personDefaults, person10Data, personActions);
 
     <div id="modulePattern" class="step code modules" data-group="modules" data-x="2070" data-y="1000" data-scale="1" data-z="200">
         <div class="code-holder">
-            <div class="ace" style="width: 100%;margin-top: 20px;">var personFactory = (function(personData) {
+            <div class="ace" style="width: 100%;margin-top: 20px;">var personFactory = (function(data) {
     var personDefaults = { ... };
     function getHouse() { ... }
     function brandish() { ... }
@@ -582,18 +582,41 @@ var person10 = _.extend({}, personDefaults, person10Data, personActions);
             scheme: scheme
         },
         personDefaults,
-        personData
+        data
     });
 
     return person; // composed object: data, defaults, methods
-)();</div>
+)(personData);</div>
+
+        </div>
+    </div>
+
+    <div id="imports" class="step code modules" data-group="modules" data-x="2070" data-y="1000" data-scale="1" data-z="200">
+        <div class="code-holder">
+            <div class="ace" style="width: 100%;margin-top: 20px;">var personFactory = (function(data, dependency, _) {
+    var personDefaults = { ... };
+    function getHouse() { ... }
+    function brandish() { ... }
+    function scheme() { ... }
+
+    var person = _.extend({
+            getHouse: getHouse,
+            brandish: brandish,
+            scheme: scheme
+        },
+        personDefaults,
+        data
+    });
+
+    return person; // composed object: data, defaults, methods
+)(personData, otherDependency, _);</div>
 
         </div>
     </div>
 
     <div id="privateVars" class="step code modules" data-group="modules" data-x="2070" data-y="1000" data-scale="1" data-z="200">
         <div class="code-holder">
-            <div class="ace" style="width: 100%;margin-top: 20px;">var personFactory = (function(personData) {
+            <div class="ace" style="width: 100%;margin-top: 20px;">var personFactory = (function(data, dependency, _) {
     var personDefaults = { ... };
     var isDeadYet = false;
     /* functions go here */
@@ -603,16 +626,16 @@ var person10 = _.extend({}, personDefaults, person10Data, personActions);
             isDeadYet: isDeadYet
         },
         personDefaults,
-        personData
+        data
     }); // composed object: data, defaults, methods
-)();</div>
+)(personData, otherDependency, _);</div>
 
         </div>
     </div>
 
     <div id="privateVarsGetter" class="step code modules" data-group="modules" data-x="2070" data-y="1000" data-scale="1" data-z="200">
         <div class="code-holder">
-            <div class="ace" style="width: 100%;margin-top: 20px;">var personFactory = (function(personData) {
+            <div class="ace" style="width: 100%;margin-top: 20px;">var personFactory = (function(data, dependency, _) {
     var personDefaults = { ... };
     var isDeadYet = false;
     /* functions go here */
@@ -624,15 +647,15 @@ var person10 = _.extend({}, personDefaults, person10Data, personActions);
             };
         },
         personDefaults,
-        personData
+        data
     }); // composed object: data, defaults, methods
-)();</div>
+)(personData, otherDependency, _);</div>
 
         </div>
     </div>
     <div id="privateVarsSetter" class="step code modules" data-group="modules" data-x="2070" data-y="1000" data-scale="1" data-z="200">
         <div class="code-holder">
-            <div class="ace" style="width: 100%;margin-top: 20px;">var personFactory = (function(personData) {
+            <div class="ace" style="width: 100%;margin-top: 20px;">var personFactory = (function(data, dependency, _) {
     var personDefaults = { ... };
     var isDeadYet = false;
     /* functions go here */
@@ -645,9 +668,9 @@ var person10 = _.extend({}, personDefaults, person10Data, personActions);
             };
         },
         personDefaults,
-        personData
+        data
     }); // composed object: data, defaults, methods
-)();</div>
+)(personData, otherDependency, _);</div>
 
         </div>
     </div>
@@ -876,7 +899,7 @@ alert(person2.constructor.prototype.favoriteFood);
     <div id="useLiterals" class="step code literals" data-group="literals" data-x="600" data-y="100" data-scale="1" data-z="200">
         <div class="summary-list good">
             <ul>
-                <li class="list-heading">Use Object Literals:</li>
+                <li class="list-heading">Use Object Literals</li>
                 <li>As quick data constructs</li>
                 <li>For "throw away" objects</li>
             </ul>
@@ -886,9 +909,11 @@ alert(person2.constructor.prototype.favoriteFood);
     <div id="useExtension" class="step code extension" data-group="extension" data-x="1400" data-y="100" data-scale="1" data-z="200">
         <div class="summary-list good">
             <ul>
-                <li class="list-heading">Use Object Literals:</li>
-                <li>As quick data constructs</li>
-                <li>For "throw away" objects</li>
+                <li class="list-heading">Use Object Extension to</li>
+                <li>Combine data with defaults</li>
+                <li>Compose objects from multiple data sources</li>
+                <li>Compose components with Mixins</li>
+                <li>Facilitate other forms of object construction</li>
             </ul>
         </div>
     </div>
@@ -896,9 +921,13 @@ alert(person2.constructor.prototype.favoriteFood);
     <div id="useModulePattern" class="step code modules" data-group="modules" data-x="2300" data-y="100" data-scale="1" data-z="200">
         <div class="summary-list good">
             <ul>
-                <li class="list-heading">Use the Module Pattern:</li>
-                <li>As quick data constructs</li>
-                <li>For "throw away" objects</li>
+                <li class="list-heading">Use the Module Pattern to</li>
+                <li>Hide internal implementation</li>
+                <li>Create objects with a steady API when you don't need inheritance</li>
+                <li>Avoid polluting the global scope</li>
+                <li>Implement dependency injection (testing)</li>
+                <li>Implement dependency resolution (dynamic loading)</li>
+                <li>Facilitate other forms of object construction</li>
             </ul>
         </div>
     </div>
@@ -906,9 +935,13 @@ alert(person2.constructor.prototype.favoriteFood);
     <div id="usePrototypes" class="step code prototypes" data-group="prototypes" data-x="3300" data-y="100" data-scale="1" data-z="200">
         <div class="summary-list good">
             <ul>
-                <li class="list-heading">Use Prototype Inheritance:</li>
-                <li>As quick data constructs</li>
-                <li>For "throw away" objects</li>
+                <li class="list-heading">Use Prototype Inheritance to</li>
+                <li>Create an inheritance hierarchy*</li>
+                <li>Feel a bit more like working with classes**</li>
+                <li>Specify default data and behavior</li>
+                <li>Save memory by prototype efficiency</li>
+                <li>Extend objects you might not have created***</li>
+                <li>Implement other forms of object construction</li>
             </ul>
         </div>
     </div>
