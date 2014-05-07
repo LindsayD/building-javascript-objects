@@ -236,12 +236,44 @@ blockquote small {
 .impress-enabled.impress-group-literals .step.only-group-literals,
 .impress-enabled.impress-group-extension .step.only-group-extension,
 .impress-enabled.impress-group-modules .step.only-group-modules,
-.impress-enabled.impress-group-prototypes .step.only-group-prototypes
+.impress-enabled.impress-group-prototypes .step.only-group-prototypes,
+.impress-enabled.impress-group-decisions .step.only-group-decisions,
+.impress-enabled.impress-on-constructionTypes .step.only-group-literals,
+.impress-enabled.impress-on-constructionTypes .step.only-group-extension,
+.impress-enabled.impress-on-constructionTypes .step.only-group-modules,
+.impress-enabled.impress-on-constructionTypes .step.only-group-prototypes,
+.impress-enabled.impress-on-decisions .step.only-group-literals,
+.impress-enabled.impress-on-decisions .step.only-group-extension,
+.impress-enabled.impress-on-decisions .step.only-group-modules,
+.impress-enabled.impress-on-decisions .step.only-group-prototypes
 { opacity: 1 }
 
 .impress-enabled .step.last {
     opacity: 1;
 }
+
+.ss1, .ss2, .ss3, .ss4, .ss5, .ss6 {
+    opacity: 0;
+    position: absolute;
+}
+
+.substep1 .ss1,
+.substep2 .ss2,
+.substep3 .ss3,
+.substep4 .ss4,
+.substep5 .ss5,
+.substep6 .ss6
+{
+    opacity: 1;
+    position: relative;
+
+    -webkit-transition: opacity 1s;
+    -moz-transition:    opacity 1s;
+    -ms-transition:     opacity 1s;
+    -o-transition:      opacity 1s;
+    transition:         opacity 1s;
+}
+
 
 .bold-text {
 	font-weight: bold;
@@ -382,7 +414,7 @@ blockquote small {
 
 .pic::after {
     content: " ";
-    background: transparent url(../images/carrying-right-small.gif) no-repeat 100% 0;
+    background: transparent url(../images/carrying-right-small.png) no-repeat 100% 0;
     position: absolute;
     bottom: -45px;
     right: -63px;
@@ -486,13 +518,20 @@ blockquote small {
 
 .summary-list::before {
     content: " ";
-    background: transparent url(../images/happyIkeaDude.gif) no-repeat;
     position: absolute;
     bottom: -7px;
     left: -73px;
     height: 187px;
     width: 153px;
     z-index: -1;
+}
+
+.summary-list.good::before {
+    background: transparent url(../images/happyIkeaDude.png) no-repeat;
+}
+
+.summary-list.bad::before {
+    background: transparent url(../images/sadIkeaDude.png) no-repeat;
 }
 
 /*

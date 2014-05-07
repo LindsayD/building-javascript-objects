@@ -169,14 +169,14 @@
 		</div>
     </div>
 
-    <div id="whatever" class="step" data-x="0" data-y="0" data-scale="1" data-z="-800">
+    <div id="whatever" class="step" data-x="0" data-y="600" data-scale="1" data-z="-800">
         <div style="text-align: center;position: relative;">
             <div class="smaller-text bold-text" style="position: absolute; top: -60px; left:0px; text-align: center; width:  100%;">With great freedom...</div>
             <div class="pic"><img src="images/whateverllamabig.jpg" style="width:550px;" /></div>
         </div>
     </div>
 
-    <div id="codeDefensive" class="step" data-x="0" data-y="0" data-scale="1" data-z="-800">
+    <div id="codeDefensive" class="step" data-x="0" data-y="1200" data-scale="1" data-z="-800">
         <div style="text-align: center; position:relative;">
             <div class="smaller-text bold-text" style="position: absolute; top: -60px; left:0px; text-align: center; width:  100%;">... comes great responsibility.</div>
             <div class="pic"><img src="images/code-defensively.jpg" style="width:550px;"  /></div>
@@ -190,7 +190,7 @@
     </div>
 
     <div id="objectsSummary" class="step objects" data-group="objects" data-x="0" data-y="100" data-scale="1" data-z="200">
-        <div class="summary-list">
+        <div class="summary-list good">
             <ul>
                 <li class="list-heading">An Object:</li>
                 <li>Represents an instance of a "thing"</li>
@@ -201,17 +201,27 @@
         </div>
     </div>
 
-    <div id="literals" class="step only-group-literals" data-group="literals" style="text-align: center" data-x="0" data-y="500" data-scale="1" data-z="-400">
+    <div id="constructionTypes" class="step construction-types-heading" style="text-align: center" data-x="2000" data-y="1100" data-scale="1" data-z="2600">
+        <div class="heading-text"><img src="images/build-what.png" /><span style="line-height: 110px; vertical-align: top">How do I build objects?</span></div>
+    </div>
+
+    <div id="literals" class="step only-group-literals" data-group="literals" style="text-align: center" data-x="600" data-y="500" data-scale="1" data-z="-400">
         <div class="heading"><span>Object Literals</span></div>
     </div>
 
-    <div id="literalVar" class="step code literals" data-group="literals" data-x="-350" data-y="1000" data-scale="1" data-z="200">
+    <div id="literalVar" class="step code literals" data-group="literals" data-substeps="2" data-x="350" data-y="1000" data-scale="1" data-z="200">
         <div class="code-holder">
             <div class="ace" style="width: 100%;">var person = {};</div>
         </div>
+        <div class="ss2" style="position: absolute; top: 130px;">
+            <div style="margin-left: 20px; height: 240px;padding: 30px 60px 20px 200px; width: 720px; position: relative; background: url(images/ikeaDudeTalks.gif) no-repeat;">
+                <div style="font-size: 70%;line-height:1.2em;">The irony of object literals is that they can never be literal objects.</div>
+                <div style="font-size: 50%; text-align: right; margin-top:10px;"> - Lindsay Donaghe</div>
+            </div>
+        </div>
     </div>
 	
-	<div id="literalAddProps" class="step code literals" data-group="literals" data-x="-350" data-y="1000" data-scale="1" data-z="200">
+	<div id="literalAddProps" class="step code literals" data-group="literals" data-x="350" data-y="1000" data-scale="1" data-z="200">
         <div class="code-holder">
             <div class="ace" style="width: 100%;">var person = {};
 
@@ -223,7 +233,7 @@ person.brandish = function() {
         </div>
     </div>
 
-    <div id="literalDeleteProps" class="step code literals" data-group="literals" data-x="-350" data-y="1000" data-scale="1" data-z="200">
+    <div id="literalDeleteProps" class="step code literals" data-group="literals" data-x="350" data-y="1000" data-scale="1" data-z="200">
         <div class="code-holder">
             <div class="ace" style="width: 100%;">var person = {};
 
@@ -237,7 +247,7 @@ delete person.weapon;</div>
         </div>
     </div>
 
-    <div id="literalObjCreate" class="step code literals" data-group="literals" data-x="-350" data-y="1000" data-scale="1" data-z="200">
+    <div id="literalObjCreate" class="step code literals" data-group="literals" data-x="350" data-y="1000" data-scale="1" data-z="200">
         <div class="code-holder">
             <div class="ace" style="width: 100%;">var person = Object.create();
 
@@ -249,7 +259,7 @@ person.brandish = function() {
         </div>
     </div>
 	
-	<div id="literalsMore" class="step code literals" data-group="literals" data-x="-350" data-y="1000" data-scale="1" data-z="200">
+	<div id="literalsMore" class="step code literals" data-group="literals" data-x="350" data-y="1000" data-scale="1" data-z="200">
         <div class="code-holder">
             <div class="ace" style="width: 100%;">var person1 = {};
 
@@ -268,7 +278,7 @@ person2.brandish = brandish;</div>
         </div>
     </div>
 	
-	<div id="literalsCompact" class="step code literals" data-group="literals" data-x="-350" data-y="1000" data-scale="1" data-z="200">
+	<div id="literalsCompact" class="step code literals" data-group="literals" data-x="350" data-y="1000" data-scale="1" data-z="200">
         <div class="code-holder">
             <div class="ace" style="width: 100%;">var person1 = {};
 person1.name = 'Daenerys';
@@ -291,7 +301,7 @@ var person3 = {
         </div>
     </div>
 	
-	<div id="literalsMoreCompact" class="step code literals" data-group="literals" data-x="-350" data-y="1000" data-scale="1" data-z="200">
+	<div id="literalsMoreCompact" class="step code literals" data-group="literals" data-x="350" data-y="1000" data-scale="1" data-z="200">
         <div class="code-holder">
             <div class="ace" style="width: 100%;">var person1 = {};
 person1.name = 'Daenerys';
@@ -317,7 +327,7 @@ var person4 = {
         </div>
     </div>
 	
-	<div id="literalsEvenMoreCode" class="step code literals" data-isprop="true" data-group="literals" data-x="-350" data-y="1000" data-scale="1" data-z="200">
+	<div id="literalsEvenMoreCode" class="step code literals" data-isprop="true" data-group="literals" data-x="350" data-y="1000" data-scale="1" data-z="200">
         <div class="code-holder">
             <div class="ace" style="width: 100%;">var person1 = {};
 person1.name = 'Daenerys';
@@ -348,9 +358,9 @@ var person5 = {
         </div>
     </div>
 
-    <div id="literalsEvenMore" class="step code literals" data-group="literals" data-x="-350" data-y="1000" data-scale="1" data-z="300"></div>
+    <div id="literalsEvenMore" class="step code literals" data-group="literals" data-x="350" data-y="1000" data-scale="1" data-z="300"></div>
 
-    <div id="literalsExtremeMoreCode" class="step code literals" data-isprop="true" data-group="literals" data-x="-350" data-y="1000" data-scale="1" data-z="200">
+    <div id="literalsExtremeMoreCode" class="step code literals" data-isprop="true" data-group="literals" data-x="350" data-y="1000" data-scale="1" data-z="200">
         <div class="code-holder">
             <div class="ace" style="width: 100%;">var person1 = {};
 person1.name = 'Daenerys';
@@ -411,30 +421,38 @@ var person11 = {
         </div>
     </div>
 
-    <div id="literalsExtremeMore" class="step code literals" data-group="literals" data-x="-350" data-y="1100" data-scale="1" data-z="700"></div>
+    <div id="literalsExtremeMore" class="step code literals" data-group="literals" data-x="350" data-y="1100" data-scale="1" data-z="700"></div>
 
-    <div id="literalsSummary" class="step code literals" data-group="literals" data-x="0" data-y="100" data-scale="1" data-z="200">
-        <div class="summary-list">
-            <ul>
-                <li class="list-heading">Object Literals are:</li>
-                <li>Fundamental even to other patterns</li>
-                <li>Easy to create</li>
-                <li>Easy to extend instances</li>
-                <li>Cumbersome to create many of the same type</li>
-                <li>Cumbersome to extend many in the same way</li>
-                <li>Unable to keep data private</li>
-                <li>Unable to indicate an API</li>
-                <li>Can introduce namespace conflicts</li>
-                <li>Can cause problems with pointers vs values</li>
-            </ul>
+    <div id="literalsSummary" class="step code literals" data-substeps="2" data-group="literals" data-x="600" data-y="100" data-scale="1" data-z="200">
+        <div class="ss1">
+            <div class="summary-list good">
+                <ul>
+                    <li class="list-heading">Object Literals Good Stuff:</li>
+                    <li>Fundamental even to other patterns</li>
+                    <li>Simple to understand and use</li>
+                    <li>Easy to create</li>
+                    <li>Easy to extend instances</li>
+                </ul>
+            </div>
+        </div>
+        <div class="ss2">
+            <div class="summary-list bad">
+                <ul>
+                    <li class="list-heading">Object Literals Bad Stuff:</li>
+                    <li>Cumbersome to create many of the same type</li>
+                    <li>Cumbersome to extend many in the same way</li>
+                    <li>Unable to keep data private</li>
+                    <li>Unable to indicate an API</li>
+                </ul>
+            </div>
         </div>
     </div>
 
-    <div id="extension" class="step extension-heading only-group-extension" data-group="extension" style="text-align: center" data-x="0" data-y="500" data-scale="1" data-z="-400">
+    <div id="extension" class="step extension-heading only-group-extension" data-group="extension" style="text-align: center" data-x="1400" data-y="500" data-scale="1" data-z="-400">
         <div class="heading"><span>Object Extension</span></div>
     </div>
 
-    <div id="objectsAsData" class="step code extension" data-group="extension" data-x="-350" data-y="1000" data-scale="1" data-z="200">
+    <div id="objectsAsData" class="step code extension" data-group="extension" data-x="1100" data-y="1000" data-scale="1" data-z="200">
         <div class="code-holder">
             <div class="ace" style="width: 100%"> var person1Data = {
     name: 'Daenerys',
@@ -448,7 +466,7 @@ var person11 = {
         </div>
     </div>
 
-    <div id="dataExtension" class="step code extension" data-group="extension" data-x="-350" data-y="1000" data-scale="1" data-z="200">
+    <div id="dataExtension" class="step code extension" data-group="extension" data-x="1100" data-y="1000" data-scale="1" data-z="200">
         <div class="code-holder">
             <div class="ace" style="width: 100%">var personDefaults = {
     gender: 'female',
@@ -467,10 +485,10 @@ var person11 = {
         </div>
     </div>
 
-    <div id="mixins" class="step code extension" data-group="extension" data-x="-350" data-y="1000" data-scale="1" data-z="200">
+    <div id="mixins" class="step code extension" data-group="extension" data-x="1100" data-y="1000" data-scale="1" data-z="200">
         <div class="code-holder">
             <div class="ace" style="width: 100%;">var personActions = {
-    getHouse: function() { return this.house; }
+    getHouse: function() { ... }
     brandish: function() { ... },
     scheme: function() { ... }
 };
@@ -488,7 +506,7 @@ var person11 = {
         </div>
     </div>
 
-    <div id="extensionResult" class="step code extension" data-group="extension" data-x="-350" data-y="1000" data-scale="1" data-z="200">
+    <div id="extensionResult" class="step code extension" data-group="extension" data-x="1100" data-y="1000" data-scale="1" data-z="200">
         <div class="code-holder">
             <div class="ace" style="width: 100%">var person1 = _.extend({}, personDefaults, person1Data, personActions);</div>
             <div class="ace" data-size="smaller" style="width: 100%;margin-top: 20px;">// person 1
@@ -516,31 +534,41 @@ var person10 = _.extend({}, personDefaults, person10Data, personActions);
         </div>
     </div>
 
-    <div id="extensionSummary" class="step code extension" data-group="extension" data-x="0" data-y="200" data-scale="1" data-z="-100">
-        <div class="summary-list">
-            <ul>
-                <li class="list-heading">Object Extension</li>
-                <li>Facilitates composition of functionality (Mixins)</li>
-                <li>Facilitates composition of data</li>
-                <li>Provides means to specify defaults</li>
-                <li>Still cumbersome to create many of the same type</li>
-                <li>Still no way to keep data private</li>
-                <li>Provides composition API definition*</li>
-            </ul>
+    <div id="extensionSummary" class="step code extension" data-substeps="2" data-group="extension" data-x="1400" data-y="200" data-scale="1" data-z="-100">
+        <div class="ss1">
+            <div class="summary-list good">
+                <ul>
+                    <li class="list-heading">Object Extension Good Stuff:</li>
+                    <li>Facilitates composition of functionality (Mixins)</li>
+                    <li>Facilitates composition of data</li>
+                    <li>Provides means to specify defaults</li>
+                    <li>Provides composition API definition*</li>
+                </ul>
+            </div>
+        </div>
+        <div class="ss2">
+            <div class="summary-list bad">
+                <ul>
+                    <li class="list-heading">Object Extension Bad Stuff:</li>
+                    <li>Can introduce conflicts and data collisions</li>
+                    <li>Can cause problems with pointers vs values</li>
+                    <li>Does not provide "type" checking</li>
+                </ul>
+            </div>
         </div>
     </div>
 
-    <div id="modules" class="step module-heading only-group-modules" data-group="modules" style="text-align: center" data-x="0" data-y="500" data-scale="1" data-z="-400">
+    <div id="modules" class="step module-heading only-group-modules" data-group="modules" style="text-align: center" data-x="2300" data-y="500" data-scale="1" data-z="-400">
         <div class="heading"><span>Module Constructors</span></div>
     </div>
 
-    <div id="factory" class="step code modules" data-group="modules" data-x="-350" data-y="1000" data-scale="1" data-z="200">
+    <div id="factory" class="step code modules" data-group="modules" data-x="2070" data-y="1000" data-scale="1" data-z="200">
         <div class="code-holder">
             <div class="ace" style="width: 100%;">var person1 = personFactory(person1Data);</div>
         </div>
     </div>
 
-    <div id="modulePattern" class="step code modules" data-group="modules" data-x="-350" data-y="1000" data-scale="1" data-z="200">
+    <div id="modulePattern" class="step code modules" data-group="modules" data-x="2070" data-y="1000" data-scale="1" data-z="200">
         <div class="code-holder">
             <div class="ace" style="width: 100%;margin-top: 20px;">var personFactory = (function(personData) {
     var personDefaults = { ... };
@@ -563,7 +591,7 @@ var person10 = _.extend({}, personDefaults, person10Data, personActions);
         </div>
     </div>
 
-    <div id="privateVars" class="step code modules" data-group="modules" data-x="-350" data-y="1000" data-scale="1" data-z="200">
+    <div id="privateVars" class="step code modules" data-group="modules" data-x="2070" data-y="1000" data-scale="1" data-z="200">
         <div class="code-holder">
             <div class="ace" style="width: 100%;margin-top: 20px;">var personFactory = (function(personData) {
     var personDefaults = { ... };
@@ -582,7 +610,7 @@ var person10 = _.extend({}, personDefaults, person10Data, personActions);
         </div>
     </div>
 
-    <div id="privateVarsGetter" class="step code modules" data-group="modules" data-x="-350" data-y="1000" data-scale="1" data-z="200">
+    <div id="privateVarsGetter" class="step code modules" data-group="modules" data-x="2070" data-y="1000" data-scale="1" data-z="200">
         <div class="code-holder">
             <div class="ace" style="width: 100%;margin-top: 20px;">var personFactory = (function(personData) {
     var personDefaults = { ... };
@@ -602,7 +630,7 @@ var person10 = _.extend({}, personDefaults, person10Data, personActions);
 
         </div>
     </div>
-    <div id="privateVarsSetter" class="step code modules" data-group="modules" data-x="-350" data-y="1000" data-scale="1" data-z="200">
+    <div id="privateVarsSetter" class="step code modules" data-group="modules" data-x="2070" data-y="1000" data-scale="1" data-z="200">
         <div class="code-holder">
             <div class="ace" style="width: 100%;margin-top: 20px;">var personFactory = (function(personData) {
     var personDefaults = { ... };
@@ -624,58 +652,263 @@ var person10 = _.extend({}, personDefaults, person10Data, personActions);
         </div>
     </div>
 
-    <div id="modulesSummary" class="step code modules" data-group="modules" data-x="0" data-y="100" data-scale="1" data-z="200">
-        <div class="summary-list">
-            <ul>
-                <li class="list-heading">Module Pattern Construction</li>
-                <li>Still facilitates composition of functionality (Mixins)</li>
-                <li>Still facilitates composition of data</li>
-                <li>Still provides means to specify defaults</li>
-                <li>Makes it easy to create many of the same type</li>
-                <li>Gives ability to keep data private</li>
-                <li>Provides composition API and "intentional" API*</li>
-                <li>May consume more memory because a closure is created for each construction.</li>
-            </ul>
+    <div id="modulesSummary" class="step code modules" data-substeps="2" data-group="modules" data-x="2300" data-y="100" data-scale="1" data-z="200">
+        <div class="ss1">
+            <div class="summary-list good">
+                <ul>
+                    <li class="list-heading">Module Pattern Construction Good Stuff:</li>
+                    <li>Defines a public API for constructed objects</li>
+                    <li>Provides means to specify defaults</li>
+                    <li>Makes it easy to create many of the same type</li>
+                    <li>Gives ability to keep data/functionality private</li>
+                </ul>
+            </div>
+        </div>
+        <div class="ss2">
+            <div class="summary-list bad">
+                <ul>
+                    <li class="list-heading">Module Pattern Construction Bad Stuff:</li>
+                    <li>Does not provide "type" checking</li>
+                    <li>No automatic instance extension</li>
+                    <li>Closure for each object creation may consume more memory than alternatives</li>
+                </ul>
+            </div>
         </div>
     </div>
 
-    <div id="prototypes" class="step prototypes-heading only-group-prototypes" data-group="prototypes" style="text-align: center" data-x="0" data-y="500" data-scale="1" data-z="-400">
+    <div id="prototypes" class="step prototypes-heading only-group-prototypes" data-group="prototypes" style="text-align: center" data-x="3300" data-y="500" data-scale="1" data-z="-400">
         <div class="heading"><span>Prototype Inheritance</span></div>
     </div>
 
-    <div id="favorComposition" class="step" data-x="0" data-y="0" data-scale="1" data-z="-800">
+    <div id="favorComposition" class="step" data-x="3300" data-y="-500" data-scale="1" data-z="-800">
         <div style="margin-left: 20px; height: 240px;padding: 30px 60px 20px 200px; width: 720px; position: relative; background: url(images/ikeaDudeTalks.gif) no-repeat;">
             <div style="font-size: 70%;line-height:1.2em;">Favor object composition over class inheritance.</div>
             <div style="font-size: 50%; text-align: right; margin-top:50px;"> - the Gang of Four, <em>Design Patterns</em></div>
         </div>
     </div>
 
-    <div id="breakTheRules" class="step" data-group="prototypes" data-x="0" data-y="0" data-scale="1" data-z="-800">
+    <div id="breakTheRules" class="step" data-group="prototypes" data-x="3300" data-y="0" data-scale="1" data-z="-800">
         <div style="text-align: center; position:relative;">
             <div class="pic"><img src="images/no-dogs-allowed.jpg" style="width:550px;"  /></div>
         </div>
     </div>
 
-    <div id="patience" class="step" data-group="prototypes" data-x="0" data-y="0" data-scale="1" data-z="-800">
-        <div style="text-align: center; position:relative;">
-            <div class="smaller-text bold-text" style="position: absolute; top: -60px; left:0px; text-align: center; width:  100%;"></div>
-            <div class="pic"><img src="images/treatstack.jpg" style="width:350px;"  /></div>
+    <div id="constructor" class="step code prototypes" data-group="prototypes" data-x="3090" data-y="1000" data-scale="1" data-z="200">
+        <div class="subheading" style="margin-top:-20px;">The Constructor</div>
+        <div style="width: 100%">
+            <div class="ace" style="width: 100%;">function Person(init) {
+    this.name = init.name || this.name;
+    this.weapon = init.weapon || this.weapon;
+    this.house = init.house || this.house;
+}</div>
+        </div>
+        <div style="text-align: center; position:relative; margin-top: 10px;">
+            <div class="pic"><img src="images/chainmaker.gif" /></div>
         </div>
     </div>
 
-    <div id="prototypesSummary" class="step code prototypes" data-group="prototypes" data-x="0" data-y="100" data-scale="1" data-z="200">
-        <div class="summary-list">
+    <div id="instance" class="step code prototypes" data-group="prototypes" data-x="3090" data-y="1000" data-scale="1" data-z="200">
+        <div class="subheading">The Instance</div>
+        <div class="code-holder">
+            <div class="ace" style="width: 100%;">var person1 = new Person(person1Data);</div>
+        </div>
+    </div>
+
+    <div id="prototypeFunctionality" class="step code prototypes" data-group="prototypes" data-x="3090" data-y="1000" data-scale="1" data-z="200">
+        <div class="subheading">The Prototype - Functionality</div>
+        <div class="code-holder">
+            <div class="ace" style="width: 100%;">Person.prototype.getHouse = function() { return this.house; };
+Person.prototype.brandish = function() { alert(this.name + ' brings forth ' + this.weapon); };
+Person.prototype.scheme = function() { ... };
+Person.prototype.die = function() { this.isDeadYet = true; };
+            </div>
+        </div>
+    </div>
+
+    <div id="prototypeData" class="step code prototypes" data-group="prototypes" data-x="3090" data-y="1000" data-scale="1" data-z="200">
+        <div class="subheading">The Prototype - Data Defaults</div>
+        <div class="code-holder">
+            <div class="ace" style="width: 100%;">var personDefaults = {
+    isDeadYet: false,
+    gender: 'female',
+    location: "King's Landing",
+    house: 'Lannister'
+};
+
+_.extend(Person.prototype, personDefaults); // extension works!</div>
+         </div>
+    </div>
+
+
+    <div id="prototypeWhenever" class="step code prototypes" data-group="prototypes" data-x="3090" data-y="1000" data-scale="1" data-z="200">
+        <div class="subheading">The Prototype - Instant and Automatic</div>
+        <div class="code-holder">
+            <div class="ace" style="width: 100%;">var personDefaults = {
+    isDeadYet: false,
+    gender: 'female',
+    location: "King's Landing",
+    house: 'Lannister'
+};
+
+_.extend(Person.prototype, personDefaults); // extension works!</div>
+            <div class="ace" style="width: 100%;margin-top: 20px;">var person1 = new Person({ name: 'Sansa' });
+Person.prototype.favoriteFood = 'lemon cakes';
+
+alert(person1.name + ' likes ' + person1.favoriteFood);
+// says "Sansa likes lemon cakes"</div>
+        </div>
+    </div>
+
+    <div id="prototypeOverrides" class="step code prototypes" data-group="prototypes" data-x="3090" data-y="1000" data-scale="1" data-z="200">
+        <div class="subheading">Instance vs Prototype</div>
+        <div class="code-holder">
+            <div class="ace" style="width: 100%;">var person1 = new Person({ name: 'Sansa' });
+Person.prototype.favoriteFood = 'lemon cakes';
+
+alert(person1.name + ' likes ' + person1.favoriteFood);
+// says "Sansa likes lemon cakes"
+
+var person2 = new Person({ name: 'The Hound' });
+person2.favoriteFood = 'chicken';
+
+alert(person2.name + ' likes ' + person2.favoriteFood);
+// says "The Hound likes chicken"</div>
+        </div>
+    </div>
+
+    <div id="prototypeAccess" class="step code prototypes" data-group="prototypes" data-x="3090" data-y="1000" data-scale="1" data-z="200">
+        <div class="subheading">Instance vs Prototype</div>
+        <div class="code-holder">
+            <div class="ace" style="width: 100%;">var person1 = new Person({ name: 'Sansa' });
+Person.prototype.favoriteFood = 'lemon cakes';
+
+alert(person1.name + ' likes ' + person1.favoriteFood);
+// says "Sansa likes lemon cakes"
+
+var person2 = new Person({ name: 'The Hound' });
+person2.favoriteFood = 'chicken';
+
+alert(person2.name + ' likes ' + person2.favoriteFood);
+// says "The Hound likes chicken"
+
+alert(person2.constructor.prototype.favoriteFood);
+// says "lemon cakes"</div>
+        </div>
+    </div>
+
+    <div id="prototypeInheritance" class="step code prototypes" data-group="prototypes" data-x="3090" data-y="1000" data-scale="1" data-z="200">
+        <div class="subheading">FINISH!! Inheritance</div>
+        <div class="code-holder">
+            <div class="ace" style="width: 100%;">var person = new Person({ name: 'Sansa' });
+                function Female(data) { ... };
+
+                Female.prototype = person;
+                var female = new Female(data);
+
+                function Queen(data) { ... };
+
+                Queen.prototype = female;
+
+
+            </div>
+        </div>
+    </div>
+
+    <div id="hierarchies" class="step" data-group="prototypes" data-x="3090" data-y="-500" data-scale="1" data-z="-800">
+        <div style="text-align: center; position:relative;">
+            <div class="smaller-text bold-text" style="position: absolute; top: -60px; left:0px; text-align: center; width:  100%;"></div>
+            <div class="pic"><img src="images/dontmakeamess.jpg" style="width:350px;"  /></div>
+        </div>
+    </div>
+
+    <div id="prototypeChaining" class="step code prototypes" data-group="prototypes" data-x="3090" data-y="1000" data-scale="1" data-z="200">
+        <div class="subheading">FINISH!!! Prototype Chaining</div>
+        <div class="code-holder">
+            <div class="ace" style="width: 100%;">var person1 = new Person({ name: 'Sansa' });
+                Person.prototype.favoriteFood = 'lemon cakes';
+
+                alert(person1.name + ' likes ' + person1.favoriteFood);
+                // says "Sansa likes lemon cakes"
+
+                var person2 = new Person({ name: 'The Hound' });
+                person2.favoriteFood = 'chicken';
+
+                alert(person2.name + ' likes ' + person2.favoriteFood);
+                // says "The Hound likes chicken"
+
+                alert(person2.constructor.prototype.favoriteFood);
+                // says "lemon cakes"</div>
+        </div>
+    </div>
+
+    <div id="prototypesSummary" class="step code prototypes" data-substeps="2" data-group="prototypes" data-x="3300" data-y="100" data-scale="1" data-z="200">
+        <div class="ss1">
+            <div class="summary-list good">
+                <ul>
+                    <li class="list-heading">Prototype Inheritance Good Stuff:</li>
+                    <li>Provides instant extension of instances</li>
+                    <li>Facilitates composition of data</li>
+                    <li>Provides means to specify defaults</li>
+                    <li>Makes it easy to create many of the same type</li>
+                    <li>Provides a concrete API (and "type" checking)</li>
+                    <li>Saves memory because the prototype defined once</li>
+                </ul>
+            </div>
+        </div>
+        <div class="ss2">
+            <div class="summary-list bad">
+                <ul>
+                    <li class="list-heading">Prototype Inheritance Bad Stuff:</li>
+                    <li>Object extension can't be used directly on this</li>
+                    <li>Prototype extension can cause side effects</li>
+                    <li>Unable to keep data private</li>
+                    <li>Cannot protect from API modification at runtime</li>
+                    <li>Deep hierachies can get ugly</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="decisions" class="step when-heading only-group-decisions" data-group="decisions" style="text-align: center" data-x="2000" data-y="1100" data-scale="1" data-z="2600">
+        <div class="heading-text"><img src="images/build-what.png" /><span style="line-height: 110px; vertical-align: top">Which do you use?</span></div>
+    </div>
+
+    <div id="useLiterals" class="step code literals" data-group="literals" data-x="600" data-y="100" data-scale="1" data-z="200">
+        <div class="summary-list good">
             <ul>
-                <li class="list-heading">Prototype Inheritance</li>
-                <li>Provides instant extension of instances</li>
-                <li>Still facilitates composition of data</li>
-                <li>Still provides means to specify defaults</li>
-                <li>Makes it easy to create many of the same type</li>
-                <li>Unable to keep data private</li>
-                <li>Provides a concrete API (and "type" checking)</li>
-                <li>Cannot protect from API modification at runtime</li>
-                <li>Hierachies can get ugly</li>
-                <li>Saves memory because the prototype defined once</li>
+                <li class="list-heading">Use Object Literals:</li>
+                <li>As quick data constructs</li>
+                <li>For "throw away" objects</li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="useExtension" class="step code extension" data-group="extension" data-x="1400" data-y="100" data-scale="1" data-z="200">
+        <div class="summary-list good">
+            <ul>
+                <li class="list-heading">Use Object Literals:</li>
+                <li>As quick data constructs</li>
+                <li>For "throw away" objects</li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="useModulePattern" class="step code modules" data-group="modules" data-x="2300" data-y="100" data-scale="1" data-z="200">
+        <div class="summary-list good">
+            <ul>
+                <li class="list-heading">Use the Module Pattern:</li>
+                <li>As quick data constructs</li>
+                <li>For "throw away" objects</li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="usePrototypes" class="step code prototypes" data-group="prototypes" data-x="3300" data-y="100" data-scale="1" data-z="200">
+        <div class="summary-list good">
+            <ul>
+                <li class="list-heading">Use Prototype Inheritance:</li>
+                <li>As quick data constructs</li>
+                <li>For "throw away" objects</li>
             </ul>
         </div>
     </div>

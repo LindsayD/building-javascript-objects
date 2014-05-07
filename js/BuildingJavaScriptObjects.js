@@ -209,7 +209,9 @@ var literalVarLeave = literalAddPropsLeave = literalDeletePropsLeave = literalOb
     literalsMoreLeave = literalsCompactLeave = literalsMoreCompactLeave = literalsEvenMoreLeave =
     literalsExtremeMoreLeave = objectsAsDataLeave =mixinsLeave = dataExtensionLeave =
     extensionResultLeave = modulePatternLeave = privateVarsLeave = privateVarsGetterLeave =
-    privateVarsSetterLeave =
+    privateVarsSetterLeave = constructorLeave = instanceLeave = prototypeFunctionalityLeave =
+    prototypeDataLeave = prototypeWheneverLeave = prototypeOverridesLeave = prototypeAccessLeave =
+    prototypeInheritanceLeave = prototypeChaining =
 function(step) {
     step.classList.add("last");
     setTimeout(function () {
