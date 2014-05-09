@@ -92,10 +92,11 @@ i, em { font-style: italic }
 a {
     color: inherit;
     text-decoration: none;
-    padding: 0 0.1em;
-    background: rgba(255,255,255,0.5);
-    text-shadow: -1px -1px 2px rgba(100,100,100,0.9);
-    border-radius: 0.2em;
+    padding: 0 0.4em;
+    background: rgba(255,255,255,1);
+    /*text-shadow: -1px -1px 2px rgba(100,100,100,0.9);*/
+    border-radius: 0.4em;
+    border: 1px solid #000;
 
     -webkit-transition: 0.5s;
     -moz-transition:    0.5s;
@@ -106,8 +107,10 @@ a {
 
 a:hover,
 a:focus {
-    background: rgba(255,255,255,1);
-    text-shadow: -1px -1px 2px rgba(100,100,100,0.5);
+    background: transparent; /*rgba(26, 188, 156, 0.3);*/
+    border-color: transparent;
+    color: #000;
+    /*text-shadow: -1px -1px 2px rgba(100,100,100,0.5);*/
 }
 
 blockquote p {
@@ -225,7 +228,8 @@ blockquote small {
 .impress-enabled .step.only-group-literals,
 .impress-enabled .step.only-group-extension,
 .impress-enabled .step.only-group-prototypes,
-.impress-enabled .step.only-group-combo
+.impress-enabled .step.only-group-combo,
+.impress-enabled .step.only-group-wrapup
 { opacity: 0; }
 
 
@@ -240,6 +244,7 @@ blockquote small {
 .impress-enabled.impress-group-prototypes .step.only-group-prototypes,
 .impress-enabled.impress-group-decisions .step.only-group-decisions,
 .impress-enabled.impress-group-combo .step.only-group-combo,
+.impress-enabled.impress-group-wrapup .step.only-group-wrapup,
 .impress-enabled.impress-on-constructionTypes .step.only-group-literals,
 .impress-enabled.impress-on-constructionTypes .step.only-group-extension,
 .impress-enabled.impress-on-constructionTypes .step.only-group-modules,
@@ -477,6 +482,7 @@ blockquote small {
     width: 130px;
 }
 
+.list,
 .summary-list,
 .quote
 {
@@ -487,6 +493,11 @@ blockquote small {
     margin-left: 70px;
     margin-top:-40px;
 }
+
+.list {
+    text-align: left;
+}
+
 .summary-list ul,
 .quote>div
 {
@@ -500,35 +511,54 @@ blockquote small {
     -moz-border-radius: 20px;
     border-radius: 20px;
 }
+
+.list ul li
+{
+    font-size: 50%;
+    padding-left: 40px;
+    min-height: 45px;
+}
 .summary-list ul li {
     font-size: 60%;
     padding-left: 40px;
 }
 
+.list ul li:nth-of-type(6n-5),
 .summary-list ul li:nth-of-type(6n-5) {
     background:transparent url(../images/pin.gif) no-repeat;
 }
+.list ul li:nth-of-type(6n-4),
 .summary-list ul li:nth-of-type(6n-4) {
     background:transparent url(../images/cam.gif) no-repeat 0 5px;
 }
+.list ul li:nth-of-type(6n-3),
 .summary-list ul li:nth-of-type(6n-3) {
     background:transparent url(../images/screw.gif) no-repeat  0 3px;
 }
+.list ul li:nth-of-type(6n-2),
 .summary-list ul li:nth-of-type(6n-2) {
     background:transparent url(../images/nut.gif) no-repeat 0 10px;
 }
+.list ul li:nth-of-type(6n-1),
 .summary-list ul li:nth-of-type(6n-1) {
     background:transparent url(../images/dowel.gif) no-repeat;
 }
+.list ul li:nth-of-type(6n),
 .summary-list ul li:nth-of-type(6n) {
     background:transparent url(../images/washer.gif) no-repeat 0 15px;
 }
 
+.list ul li.list-heading,
 .summary-list ul li.list-heading {
     font-size: 70%;
     font-weight: bold;
     padding-left: 0;
     background:none;
+}
+.list ul li.list-heading
+{
+    font-size: 100%;
+    font-family: Engagement, sans-serif;
 }
 
 .summary-list ul::before,
