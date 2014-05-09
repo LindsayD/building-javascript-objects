@@ -78,8 +78,9 @@
     
     <link rel="shortcut icon" href="favicon.png" />
     <link rel="apple-touch-icon" href="apple-touch-icon.png" />
-	
-	<script src="http://rawgithub.com/ajaxorg/ace-builds/master/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/ace/1.1.3/ace.js" type="text/javascript" charset="utf-8"></script>
+	<!-- script src="http://rawgithub.com/ajaxorg/ace-builds/master/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script -->
 	<link href="css/impress.css" rel="stylesheet" />
 </head>
 
@@ -182,6 +183,15 @@
             <div class="pic"><img src="images/code-defensively.jpg" style="width:550px;"  /></div>
         </div>
     </div>
+
+    <div id="noOOP" class="step" data-x="0" data-y="0" data-scale="1" data-z="-800">
+        <div class="quote">
+            <div>
+                <div style="font-size: 60%;line-height:1.2em;">The <em>super</em> idea is fairly important in the classical pattern, but it appears to be unnecessary in the prototypal and functional patterns. <strong>I now see my early attempts to support the classical model in JavaScript as a mistake</strong>.</div>
+                <div style="font-size: 50%; text-align: right; margin-top:-10px;"> - Douglas Crockford</div>
+            </div>
+        </div>
+    </div>
 	
 	<div id="start2" class="step" data-mimic="start" ></div>
 
@@ -213,7 +223,10 @@
         <div class="code-holder">
             <div class="ace" style="width: 100%;">var person = {};</div>
         </div>
-        <div class="ss2" style="position: absolute; top: 130px;">
+        <div class="ss1" style="text-align: center;position: absolute; top: 70px; width:100%;" >
+            <div class="pic"><img src="images/turtlesalltheway.jpg" style="width:450px;" /></div>
+        </div>
+        <div class="ss2" style="position: absolute; top: 110px;">
             <div style="margin-left: 20px; height: 240px;padding: 30px 60px 20px 200px; width: 720px; position: relative; background: url(images/ikeaDudeTalks.gif) no-repeat;">
                 <div style="font-size: 70%;line-height:1.2em;">The irony of object literals is that they can never be literal objects.</div>
                 <div style="font-size: 50%; text-align: right; margin-top:10px;"> - Lindsay Donaghe</div>
@@ -423,6 +436,12 @@ var person11 = {
 
     <div id="literalsExtremeMore" class="step code literals" data-group="literals" data-x="350" data-y="1100" data-scale="1" data-z="700"></div>
 
+    <div id="busyWork" class="step" data-group="prototypes" data-x="600" data-y="-300" data-scale="1" data-z="-800">
+        <div style="text-align: center; position:relative;">
+            <div class="pic"><img src="images/badTime.jpg"  /></div>
+        </div>
+    </div>
+
     <div id="literalsSummary" class="step code literals" data-substeps="2" data-group="literals" data-x="600" data-y="100" data-scale="1" data-z="200">
         <div class="ss1">
             <div class="summary-list good">
@@ -506,10 +525,9 @@ var person11 = {
         </div>
     </div>
 
-    <div id="extensionResult" class="step code extension" data-group="extension" data-x="1100" data-y="1000" data-scale="1" data-z="200">
+    <div id="extensionResult" class="step code extension" data-group="extension" data-x="1100" data-y="1420" data-scale="1" data-z="200">
         <div class="code-holder">
-            <div class="ace" style="width: 100%">var person1 = _.extend({}, personDefaults, person1Data, personActions);</div>
-            <div class="ace" data-size="smaller" style="width: 100%;margin-top: 20px;">// person 1
+            <div class="ace" data-size="smaller" style="width: 100%;margin-top: 20px;">// person1
 {
     name: 'Daenerys',
     gender: 'female',
@@ -521,16 +539,71 @@ var person11 = {
     scheme: function() {...}
 }
 </div>
-            <div class="ace" data-size="smaller" style="width: 100%;margin-top: 20px;">var person2 = _.extend({}, personDefaults, person2Data, personActions);
-var person3 = _.extend({}, personDefaults, person3Data, personActions);
-var person4 = _.extend({}, personDefaults, person4Data, personActions);
-var person5 = _.extend({}, personDefaults, person5Data, personActions);
-var person6 = _.extend({}, personDefaults, person6Data, personActions);
-var person7 = _.extend({}, personDefaults, person7Data, personActions);
-var person8 = _.extend({}, personDefaults, person8Data, personActions);
-var person9 = _.extend({}, personDefaults, person9Data, personActions);
-var person10 = _.extend({}, personDefaults, person10Data, personActions);
-...</div>
+    </div>
+    </div>
+
+    <div id="composition" class="step code extension" data-group="extension" data-x="1100" data-y="1000" data-scale="1" data-z="200">
+        <div class="code-holder">
+            <div class="ace" style="width: 100%;">var royaltyActions = {
+    command: function() { ... }
+    knight: function() { ... },
+    sitOnIronThrone: function() { ... }
+};
+
+
+</div>
+
+            <div class="ace" style="width: 100%;margin-top: 20px;">var royal1 = _.extend(
+    {},                         // ensure a fresh instance
+    personDefaults,
+    person1Data,
+    personActions,
+    royalActions
+);</div>
+
+        </div>
+    </div>
+
+    <div id="compositionResult" class="step code extension" data-group="extension" data-x="1100" data-y="1450" data-scale="1" data-z="200">
+        <div class="code-holder">
+            <div class="ace" data-size="smaller" style="width: 100%;margin-top: 20px;">// royal1
+{
+    name: 'Daenerys',
+    gender: 'female',
+    weapon: 'dragons',
+    location: 'Mureen',
+    house: 'Targaryen',
+    getHouse: function() {...},
+    brandish: function() {...},
+    scheme: function() {...},
+    command: function() {...},
+    knight: function() {...},
+    sitOnIronThrone() {...}
+}
+</div>
+        </div>
+    </div>
+
+    <div id="compositionAPI" class="step code extension" data-group="extension" data-x="1100" data-y="1000" data-scale="1" data-z="200">
+        <div class="code-holder">
+            <div class="ace" data-size="smaller" style="width: 100%;margin-top: 20px;">var Arya = _.extend({},
+    personDefaults,         // data defaults
+    starkFamilyDefaults,    // data defaults
+    aryaData,               // state data
+    personActions,          // functionality bundle
+    princessActions,        // functionality bundle
+    badAssActions           // functionality bundle
+);
+
+var Tyrion = _.extend({},
+    personDefaults,
+    lannisterFamilyDefaults,
+    tyrionData,
+    personActions,
+    blackSheepActions,
+    wiseAssActions,
+    vicesActions
+);</div>
         </div>
     </div>
 
@@ -570,7 +643,7 @@ var person10 = _.extend({}, personDefaults, person10Data, personActions);
 
     <div id="modulePattern" class="step code modules" data-group="modules" data-x="2070" data-y="1000" data-scale="1" data-z="200">
         <div class="code-holder">
-            <div class="ace" style="width: 100%;margin-top: 20px;">var personFactory = (function(data) {
+            <div class="ace" style="width: 100%;">var personFactory = function(data) {
     var personDefaults = { ... };
     function getHouse() { ... }
     function brandish() { ... }
@@ -586,14 +659,15 @@ var person10 = _.extend({}, personDefaults, person10Data, personActions);
     });
 
     return person; // composed object: data, defaults, methods
-)(personData);</div>
+};</div>
 
         </div>
     </div>
 
     <div id="imports" class="step code modules" data-group="modules" data-x="2070" data-y="1000" data-scale="1" data-z="200">
         <div class="code-holder">
-            <div class="ace" style="width: 100%;margin-top: 20px;">var personFactory = (function(data, dependency, _) {
+            <div class="ace" style="width: 100%;">var personFactory = (function(dependency, _) {
+return function(data) {
     var personDefaults = { ... };
     function getHouse() { ... }
     function brandish() { ... }
@@ -609,14 +683,15 @@ var person10 = _.extend({}, personDefaults, person10Data, personActions);
     });
 
     return person; // composed object: data, defaults, methods
-)(personData, otherDependency, _);</div>
+})(aDependency, _);</div>
 
         </div>
     </div>
 
     <div id="privateVars" class="step code modules" data-group="modules" data-x="2070" data-y="1000" data-scale="1" data-z="200">
         <div class="code-holder">
-            <div class="ace" style="width: 100%;margin-top: 20px;">var personFactory = (function(data, dependency, _) {
+            <div class="ace" style="width: 100%;">var personFactory = (function(dependency, _) {
+return function(data) {
     var personDefaults = { ... };
     var isDeadYet = false;
     /* functions go here */
@@ -628,14 +703,15 @@ var person10 = _.extend({}, personDefaults, person10Data, personActions);
         personDefaults,
         data
     }); // composed object: data, defaults, methods
-)(personData, otherDependency, _);</div>
+})(aDependency, _);</div>
 
         </div>
     </div>
 
     <div id="privateVarsGetter" class="step code modules" data-group="modules" data-x="2070" data-y="1000" data-scale="1" data-z="200">
         <div class="code-holder">
-            <div class="ace" style="width: 100%;margin-top: 20px;">var personFactory = (function(data, dependency, _) {
+            <div class="ace" style="width: 100%;">var personFactory = (function(dependency, _) {
+return function(data) {
     var personDefaults = { ... };
     var isDeadYet = false;
     /* functions go here */
@@ -649,13 +725,14 @@ var person10 = _.extend({}, personDefaults, person10Data, personActions);
         personDefaults,
         data
     }); // composed object: data, defaults, methods
-)(personData, otherDependency, _);</div>
+})(aDependency, _);</div>
 
         </div>
     </div>
     <div id="privateVarsSetter" class="step code modules" data-group="modules" data-x="2070" data-y="1000" data-scale="1" data-z="200">
         <div class="code-holder">
-            <div class="ace" style="width: 100%;margin-top: 20px;">var personFactory = (function(data, dependency, _) {
+            <div class="ace" style="width: 100%;">var personFactory = (function(dependency, _) {
+return function(data) {
     var personDefaults = { ... };
     var isDeadYet = false;
     /* functions go here */
@@ -664,13 +741,13 @@ var person10 = _.extend({}, personDefaults, person10Data, personActions);
             /* public functions ... */
             isDeadYet: function(val) {
                 if (val) isDeadYet = val;
-                return isDeadYet
+                return isDeadYet;
             };
         },
         personDefaults,
         data
     }); // composed object: data, defaults, methods
-)(personData, otherDependency, _);</div>
+})(aDependency, _);</div>
 
         </div>
     </div>
@@ -716,9 +793,19 @@ var person10 = _.extend({}, personDefaults, person10Data, personActions);
         </div>
     </div>
 
+    <div id="instance" class="step code prototypes" data-group="prototypes" data-x="3090" data-y="1000" data-scale="1" data-z="200">
+        <div class="subheading-text">The Instance</div>
+        <div class="code-holder">
+            <div class="ace" style="width: 100%;">var person1 = new Person(person1Data);</div>
+        </div>
+        <div style="text-align: center;position: absolute; top: 90px; width:100%;" >
+            <div class="pic"><img src="images/turtlesalltheway.jpg" style="width:450px;" /></div>
+        </div>
+    </div>
+
     <div id="constructor" class="step code prototypes" data-group="prototypes" data-x="3090" data-y="1000" data-scale="1" data-z="200">
-        <div class="subheading" style="margin-top:-20px;">The Constructor</div>
-        <div style="width: 100%">
+        <div class="subheading-text">The Constructor</div>
+        <div class="code-holder" style="width: 100%;height: 140px;">
             <div class="ace" style="width: 100%;">function Person(init) {
     this.name = init.name || this.name;
     this.weapon = init.weapon || this.weapon;
@@ -730,26 +817,31 @@ var person10 = _.extend({}, personDefaults, person10Data, personActions);
         </div>
     </div>
 
-    <div id="instance" class="step code prototypes" data-group="prototypes" data-x="3090" data-y="1000" data-scale="1" data-z="200">
-        <div class="subheading">The Instance</div>
-        <div class="code-holder">
-            <div class="ace" style="width: 100%;">var person1 = new Person(person1Data);</div>
+    <div id="typeChecking" class="step code prototypes" data-group="prototypes" data-x="3090" data-y="1000" data-scale="1" data-z="200">
+        <div class="subheading-text">Constructor "Type" checking</div>
+        <div class="code-holder" style="width: 100%">
+            <div class="ace" style="width: 100%;">var person1 = new Person(person1Data);
+
+person1.constructor === Person; // true
+person1.constructor.name === 'Person'; // true
+person1 instanceof Person; // true
+Person.prototype.isPrototypeOf(person1) // true
+</div>
         </div>
     </div>
 
-    <div id="prototypeFunctionality" class="step code prototypes" data-group="prototypes" data-x="3090" data-y="1000" data-scale="1" data-z="200">
-        <div class="subheading">The Prototype - Functionality</div>
+    <div id="prototype" class="step code prototypes" data-group="prototypes" data-x="3090" data-y="1000" data-scale="1" data-z="200">
+        <div class="subheading-text">The Prototype</div>
         <div class="code-holder">
-            <div class="ace" style="width: 100%;">Person.prototype.getHouse = function() { return this.house; };
-Person.prototype.brandish = function() { alert(this.name + ' brings forth ' + this.weapon); };
-Person.prototype.scheme = function() { ... };
-Person.prototype.die = function() { this.isDeadYet = true; };
-            </div>
+            <div class="ace" style="width: 100%;">person1.constructor.prototype;</div>
+        </div>
+        <div style="text-align: center;position: absolute; top: 90px; width:100%;" >
+            <div class="pic"><img src="images/wiggle.gif" style="width:450px;" /></div>
         </div>
     </div>
 
     <div id="prototypeData" class="step code prototypes" data-group="prototypes" data-x="3090" data-y="1000" data-scale="1" data-z="200">
-        <div class="subheading">The Prototype - Data Defaults</div>
+        <div class="subheading-text">The Prototype - Provides Defaults</div>
         <div class="code-holder">
             <div class="ace" style="width: 100%;">var personDefaults = {
     isDeadYet: false,
@@ -758,13 +850,12 @@ Person.prototype.die = function() { this.isDeadYet = true; };
     house: 'Lannister'
 };
 
-_.extend(Person.prototype, personDefaults); // extension works!</div>
-         </div>
+Person.prototype = personDefaults;</div>
+        </div>
     </div>
 
-
-    <div id="prototypeWhenever" class="step code prototypes" data-group="prototypes" data-x="3090" data-y="1000" data-scale="1" data-z="200">
-        <div class="subheading">The Prototype - Instant and Automatic</div>
+    <div id="prototypeDataSafe" class="step code prototypes" data-group="prototypes" data-x="3090" data-y="1000" data-scale="1" data-z="200">
+        <div class="subheading-text">The Prototype - Provides Defaults</div>
         <div class="code-holder">
             <div class="ace" style="width: 100%;">var personDefaults = {
     isDeadYet: false,
@@ -773,7 +864,72 @@ _.extend(Person.prototype, personDefaults); // extension works!</div>
     house: 'Lannister'
 };
 
-_.extend(Person.prototype, personDefaults); // extension works!</div>
+_.extend(Person.prototype, personDefaults); // use extension!</div>
+        </div>
+    </div>
+
+    <div id="prototypeFunctionality" class="step code prototypes" data-group="prototypes" data-x="3090" data-y="1000" data-scale="1" data-z="200">
+        <div class="subheading-text">The Prototype - Provides Functionality</div>
+        <div class="code-holder">
+            <div class="ace" style="width: 100%;">var personDefaults = {
+    isDeadYet: false,
+    gender: 'female',
+    location: "King's Landing",
+    house: 'Lannister'
+};
+
+_.extend(Person.prototype, personDefaults); // use extension!
+
+// or just add things individually
+Person.prototype.getHouse = function() { ... };
+Person.prototype.brandish = function() { ... };
+Person.prototype.scheme = function() { ... };
+Person.prototype.die = function() { this.isDeadYet = true; };</div>
+        </div>
+    </div>
+
+    <div id="constructorGotcha" class="step code prototypes" data-substeps="3" data-group="prototypes" data-x="3090" data-y="1000" data-scale="1" data-z="200">
+        <div class="subheading-text">What's my Prototype?</div>
+        <div class="code-holder ss1">
+            <div class="ace" style="width: 100%;">function Person() {}
+var proto = { name: 'Daenerys' };
+Person.prototype = proto;
+
+var person1 = new Person();
+var person2 = Person();
+var person3 = Object.create(Person.prototype);
+var person4 = Object.create(proto);
+            </div>
+        </div>
+        <div class="code-holder ss2">
+            <div class="ace" style="width: 100%;">function Person() {}
+var proto = { name: 'Daenerys' };
+Person.prototype = proto;
+
+var person1 = new Person();                     // Person
+var person2 = Person();                         // Object
+var person3 = Object.create(Person.prototype);  // Person
+var person4 = Object.create(proto);             // Object
+</div>
+        </div>
+        <div class="code-holder ss3">
+            <div class="ace" style="width: 100%;">function Person() {}
+var proto = { name: 'Daenerys', constructor: Person };
+Person.prototype = proto;
+
+var person1 = new Person();                     // Person
+var person2 = Person();                         // Object
+var person3 = Object.create(Person.prototype);  // Person
+var person4 = Object.create(proto);             // Person
+</div>
+        </div>
+    </div>
+
+    <div id="prototypeWhenever" class="step code prototypes" data-group="prototypes" data-x="3090" data-y="1000" data-scale="1" data-z="200">
+        <div class="subheading-text">The Prototype - Instant and Automatic</div>
+        <div class="code-holder">
+            <div class="ace" style="width: 100%;">var personDefaults = {...};
+_.extend(Person.prototype, personDefaults);</div>
             <div class="ace" style="width: 100%;margin-top: 20px;">var person1 = new Person({ name: 'Sansa' });
 Person.prototype.favoriteFood = 'lemon cakes';
 
@@ -783,9 +939,11 @@ alert(person1.name + ' likes ' + person1.favoriteFood);
     </div>
 
     <div id="prototypeOverrides" class="step code prototypes" data-group="prototypes" data-x="3090" data-y="1000" data-scale="1" data-z="200">
-        <div class="subheading">Instance vs Prototype</div>
+        <div class="subheading-text">Instance value vs Prototype value</div>
         <div class="code-holder">
-            <div class="ace" style="width: 100%;">var person1 = new Person({ name: 'Sansa' });
+            <div class="ace" style="width: 100%;">var personDefaults = {...};
+_.extend(Person.prototype, personDefaults);</div>
+            <div class="ace" style="width: 100%;margin-top: 20px;">var person1 = new Person({ name: 'Sansa' });
 Person.prototype.favoriteFood = 'lemon cakes';
 
 alert(person1.name + ' likes ' + person1.favoriteFood);
@@ -800,67 +958,108 @@ alert(person2.name + ' likes ' + person2.favoriteFood);
     </div>
 
     <div id="prototypeAccess" class="step code prototypes" data-group="prototypes" data-x="3090" data-y="1000" data-scale="1" data-z="200">
-        <div class="subheading">Instance vs Prototype</div>
+        <div class="subheading-text">Instance value vs Prototype value</div>
         <div class="code-holder">
-            <div class="ace" style="width: 100%;">var person1 = new Person({ name: 'Sansa' });
-Person.prototype.favoriteFood = 'lemon cakes';
-
-alert(person1.name + ' likes ' + person1.favoriteFood);
-// says "Sansa likes lemon cakes"
-
-var person2 = new Person({ name: 'The Hound' });
-person2.favoriteFood = 'chicken';
-
-alert(person2.name + ' likes ' + person2.favoriteFood);
-// says "The Hound likes chicken"
-
-alert(person2.constructor.prototype.favoriteFood);
-// says "lemon cakes"</div>
-        </div>
-    </div>
-
-    <div id="prototypeInheritance" class="step code prototypes" data-group="prototypes" data-x="3090" data-y="1000" data-scale="1" data-z="200">
-        <div class="subheading">FINISH!! Inheritance</div>
-        <div class="code-holder">
-            <div class="ace" style="width: 100%;">var person = new Person({ name: 'Sansa' });
-                function Female(data) { ... };
-
-                Female.prototype = person;
-                var female = new Female(data);
-
-                function Queen(data) { ... };
-
-                Queen.prototype = female;
-
-
+            <div class="ace" style="width: 100%;">function Person(init) {
+    this.name = init.name || this.name; // prototype override
+    this.weapon = init.weapon || this.weapon; // prototype val
+    this.house = init.house || this.house; // prototype override
+    this.houseSlogan = init.houseSlogan; // instance only
+}
+            </div>
+            <div class="ace" style="width: 100%;margin-top:20px;">var person1 = new Person({
+    name: 'Daenerys',
+    house: 'Targaryen'
+});
             </div>
         </div>
     </div>
 
-    <div id="hierarchies" class="step" data-group="prototypes" data-x="3090" data-y="-500" data-scale="1" data-z="-800">
+    <div id="prototypeInheritance" class="step code prototypes" data-group="prototypes" data-x="3090" data-y="1000" data-scale="1" data-z="200">
+        <div class="subheading-text">Inheritance</div>
+        <div class="code-holder">
+            <div class="ace" style="width: 100%;">function Person(init) {
+    this.name = init.name || this.name;
+    this.weapon = init.weapon || this.weapon;
+    this.house = init.house || this.house;
+}
+
+var person = new Person(person1Data);</div>
+            <div class="ace" style="width: 100%;margin-top: 20px;">function Highborn(data) {
+    var obj = new Person(data);
+    obj.constructor = Highborn;
+    copy(this, obj); // only copy instance values
+    this.inMajorHouse = data.inMajorHouse || this.inMajorHouse;
+}
+
+Highborn.prototype = person;
+Highborn.prototype.inMajorHouse = false;
+var highborn = new Highborn(person1Data);</div>
+        </div>
+    </div>
+
+    <div id="prototypeInheritanceDeeper" class="step code prototypes" data-group="prototypes" data-x="3090" data-y="1505" data-scale="1" data-z="200">
+        <div class="code-holder">
+            <div class="ace" style="width: 100%;">function Royal(data) {
+    var obj = new Highborn(data);
+    obj.constructor = Highborn;
+    copy(this, obj); // only copy instance values
+    this.presidesOver = data.presidesOver || this.presidesOver;
+}
+
+Royal.prototype = highborn;
+Royal.prototype.presidesOver = 'Seven Kingdoms';
+var royal = new royal(person1Data);</div>
+        </div>
+    </div>
+
+    <div id="prototypeInheritanceEvenDeeper" class="step code prototypes" data-group="prototypes" data-x="3090" data-y="1785" data-scale="1" data-z="200">
+        <div class="code-holder">
+            <div class="ace" style="width: 100%;">function Queen(data) {
+    var obj = new Royal(data);
+    obj.constructor = Queen;
+    copy(this, obj); // only copy instance values
+    this.isReagentOnly = data.isReagentOnly || this.isReagentOnly
+}
+
+Queen.prototype = royal;
+Queen.prototype.isRegentOnly = false;
+var queen = new Queen(person1Data);</div>
+        </div>
+    </div>
+
+    <div id="keepItShallow" class="step prototypes" data-x="3090" data-y="2050" data-scale="1" data-z="200">
+        <div class="quote">
+            <div>
+                <div style="font-size: 60%;line-height:1.2em;">Because objects in JavaScript are so flexible, you will want to think differently about class hierarchies. <br/><br/>Deep hierarchies are inappropriate. <br/><br/>Shallow hierarchies are efficient and expressive.</div>
+                <div style="font-size: 50%; text-align: right; margin-top:10px;"> - Douglas Crockford</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="hierarchies" class="step prototypes" data-group="prototypes" data-x="3090" data-y="2500" data-scale="1" data-z="200">
         <div style="text-align: center; position:relative;">
-            <div class="smaller-text bold-text" style="position: absolute; top: -60px; left:0px; text-align: center; width:  100%;"></div>
             <div class="pic"><img src="images/dontmakeamess.jpg" style="width:350px;"  /></div>
         </div>
     </div>
 
     <div id="prototypeChaining" class="step code prototypes" data-group="prototypes" data-x="3090" data-y="1000" data-scale="1" data-z="200">
-        <div class="subheading">FINISH!!! Prototype Chaining</div>
+        <div class="subheading-text">Prototype Chaining</div>
         <div class="code-holder">
-            <div class="ace" style="width: 100%;">var person1 = new Person({ name: 'Sansa' });
-                Person.prototype.favoriteFood = 'lemon cakes';
-
-                alert(person1.name + ' likes ' + person1.favoriteFood);
-                // says "Sansa likes lemon cakes"
-
-                var person2 = new Person({ name: 'The Hound' });
-                person2.favoriteFood = 'chicken';
-
-                alert(person2.name + ' likes ' + person2.favoriteFood);
-                // says "The Hound likes chicken"
-
-                alert(person2.constructor.prototype.favoriteFood);
-                // says "lemon cakes"</div>
+            <div class="ace" style="width: 100%;">function Person(init) {
+    this.name = init.name || this.name; // prototype override
+    this.house = init.house || this.house; // prototype override
+} </div>
+            <div class="ace" style="width: 100%;margin-top:10px;">Highborn.prototype.inMajorHouse = false;</div>
+            <div class="ace" style="width: 100%;margin-top:10px;">Royal.prototype.presidesOver = 'Seven Kingdoms';</div>
+            <div class="ace" style="width: 100%;margin-top:10px;">Queen.prototype.isRegentOnly = false;</div>
+            <div class="ace" style="width: 100%;margin-top:10px;">var queen = new Queen({ name: 'Daenerys', inMajorHouse: true });</div>
+            <div class="ace" style="width: 100%;margin-top:10px;">queen.hasOwnProperty('name'); // true
+queen.hasOwnProperty('house'); // false
+queen.hasOwnProperty('inMajorHouse'); // true
+queen.hasOwnProperty('isRegentOnly'); //false
+queen.hasOwnProperty('allOutOfImaginationNow'); // false
+            </div>
         </div>
     </div>
 
@@ -869,12 +1068,12 @@ alert(person2.constructor.prototype.favoriteFood);
             <div class="summary-list good">
                 <ul>
                     <li class="list-heading">Prototype Inheritance Good Stuff:</li>
-                    <li>Provides instant extension of instances</li>
+                    <li>Provides runtime augmentation of current and future instances</li>
                     <li>Facilitates composition of data</li>
                     <li>Provides means to specify defaults</li>
                     <li>Makes it easy to create many of the same type</li>
                     <li>Provides a concrete API (and "type" checking)</li>
-                    <li>Saves memory because the prototype defined once</li>
+                    <li>Can saves memory because the prototype defined once</li>
                 </ul>
             </div>
         </div>
@@ -882,8 +1081,9 @@ alert(person2.constructor.prototype.favoriteFood);
             <div class="summary-list bad">
                 <ul>
                     <li class="list-heading">Prototype Inheritance Bad Stuff:</li>
-                    <li>Object extension can't be used directly on this</li>
+                    <li>Object extension can't be used directly on <span class="code-text">this</span></li>
                     <li>Prototype extension can cause side effects</li>
+                    <li>Not condusive to composition of features</li>
                     <li>Unable to keep data private</li>
                     <li>Cannot protect from API modification at runtime</li>
                     <li>Deep hierachies can get ugly</li>
@@ -913,6 +1113,7 @@ alert(person2.constructor.prototype.favoriteFood);
                 <li>Combine data with defaults</li>
                 <li>Compose objects from multiple data sources</li>
                 <li>Compose components with Mixins</li>
+                <li>Program in the Functional style</li>
                 <li>Facilitate other forms of object construction</li>
             </ul>
         </div>
@@ -927,6 +1128,7 @@ alert(person2.constructor.prototype.favoriteFood);
                 <li>Avoid polluting the global scope</li>
                 <li>Implement dependency injection (testing)</li>
                 <li>Implement dependency resolution (dynamic loading)</li>
+                <li>Program in the Functional style</li>
                 <li>Facilitate other forms of object construction</li>
             </ul>
         </div>
@@ -936,6 +1138,7 @@ alert(person2.constructor.prototype.favoriteFood);
         <div class="summary-list good">
             <ul>
                 <li class="list-heading">Use Prototype Inheritance to</li>
+                <li>Program in the Prototypal style</li>
                 <li>Create an inheritance hierarchy*</li>
                 <li>Feel a bit more like working with classes**</li>
                 <li>Specify default data and behavior</li>
@@ -946,10 +1149,17 @@ alert(person2.constructor.prototype.favoriteFood);
         </div>
     </div>
 
-    <div id="wrapup" class="step" data-x="0" data-y="0" data-scale="1" data-z="0">
+    <div id="questions" class="step" data-x="0" data-y="0" data-scale="1" data-z="0">
         <div style="text-align: center; position:relative;">
             <div class="smaller-text bold-text" style="position: absolute; top: -60px; left:0px; text-align: center; width:  100%;">Questions?</div>
             <div class="pic"><img src="images/spacegoat.jpg" style="width:450px;"  /></div>
+        </div>
+    </div>
+
+    <div id="wrapup" class="step" data-x="0" data-y="0" data-scale="1" data-z="0">
+        <div style="text-align: center; position:relative;">
+            <div class="smaller-text bold-text" style="position: absolute; top: -60px; left:0px; text-align: center; width:  100%;">Resources</div>
+            <div class="pic"><img src="images/children.jpg" style="width:550px;"  /></div>
         </div>
     </div>
 </div>

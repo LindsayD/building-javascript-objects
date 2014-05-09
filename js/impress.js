@@ -211,6 +211,7 @@
 		onStepEnter: function(step) {},
 		onSubStepEnter: function(step, substepIndex, forward) {},
 		onStepLeave: function(step) {},
+        onSubStepLeave: function(step, substepIndex) {},
 		showNotes: false
 	};
 	var merge = function(obj1, obj2) {
@@ -485,21 +486,23 @@
 						||
 						(!forward && (s > 1 && s <= sc))
 					);
-					console.log('inRange = ' + inRange);
+					//console.log('inRange = ' + inRange);
 					return inRange;
 				};
-				console.log('has ' + asData.substeps + 
+				/* console.log('has ' + asData.substeps +
 					' substeps, current = ' + asData.substep + 
 					' moving ' + (forward ? 'forward' : 'backward') +
 					' in range = ' + stepInRange(asData.substeps, asData.substep)
-				);
+				);*/
 				// LLD - if we have substeps and this isn't the first one, then keep doing them.
 				// TODO - figure out if we are moving forward or back and adjust step.
 				if (stepInRange(asData.substeps, asData.substep))
 				{
-					console.log('moving from substep ' + asData.substep + ' to ' + (asData.substep + (forward ? 1 : -1)));
+                    var oldSubstep = asData.substep;
+					//console.log('moving from substep ' + asData.substep + ' to ' + (asData.substep + (forward ? 1 : -1)));
 					as.classList.remove("substep" + asData.substep);
 					asData.substep += (forward ? 1 : -1); // move forward or backward
+                    options.onSubStepLeave(as, oldSubstep);
 					if (asData.substep > 0 && asData.substep <= asData.substeps) 
 					{
 						as.classList.add("substep" + asData.substep);
@@ -518,7 +521,7 @@
 					if (typeof(moveImmediate) !== 'undefined') moveImmediate = forward ? next : prev;
 				}
             }
-	    var willMoveImmediate = typeof(moveImmediate) !== 'undefined';
+	        var willMoveImmediate = typeof(moveImmediate) !== 'undefined';
             el.classList.add("active");
             
             body.classList.add("impress-on-" + el.id);
@@ -526,8 +529,10 @@
 			if (step.substeps > 0) { //LLD
 				step.substep = forward ? 1 : parseInt(step.substeps);
 				el.classList.add("substep" + step.substep);
-				if ((forward && step.substep > 1) || !forward) options.onSubStepEnter(el, step.substep, forward);
-				console.log('init substeps at ' + step.substep);
+				if ((forward && step.substep > 1) || !forward) {
+                    options.onSubStepEnter(el, step.substep, forward);
+                }
+				//console.log('init substeps at ' + step.substep);
 			}
             
             // compute target state of the canvas based on given step

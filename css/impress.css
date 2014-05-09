@@ -245,7 +245,12 @@ blockquote small {
 .impress-enabled.impress-on-decisions .step.only-group-literals,
 .impress-enabled.impress-on-decisions .step.only-group-extension,
 .impress-enabled.impress-on-decisions .step.only-group-modules,
-.impress-enabled.impress-on-decisions .step.only-group-prototypes
+.impress-enabled.impress-on-decisions .step.only-group-prototypes,
+.impress-enabled.impress-on-extensionResult #mixins,
+.impress-enabled.impress-on-compositionResult #composition,
+.impress-enabled.impress-on-prototypeInheritanceDeeper #prototypeInheritance,
+.impress-enabled.impress-on-prototypeInheritanceEvenDeeper #prototypeInheritance,
+.impress-enabled.impress-on-prototypeInheritanceEvenDeeper #prototypeInheritanceDeeper
 { opacity: 1 }
 
 .impress-enabled .step.last {
@@ -274,6 +279,22 @@ blockquote small {
     transition:         opacity 1s;
 }
 
+.substep1 .code-holder.ss1,
+.substep2 .code-holder.ss2,
+.substep3 .code-holder.ss3,
+.substep4 .code-holder.ss4,
+.substep5 .code-holder.ss5,
+.substep6 .code-holder.ss6 {
+    opacity: 1;
+    position: relative;
+
+    -webkit-transition: opacity 0s;
+    -moz-transition: opacity 0s;
+    -ms-transition: opacity 0s;
+    -o-transition: opacity 0s;
+    transition: opacity 0s;
+}
+
 
 .bold-text {
 	font-weight: bold;
@@ -283,9 +304,17 @@ blockquote small {
 	font-size: 120%;
 	font-weight: bold;
 }
+.subheading-text {
+    font-size: 60%;
+    font-weight: bold;
+}
 .smaller-text {
 	font-size: 90%;
 	line-height: .9em;
+}
+
+.code-text {
+    font-family: Consolas, monospace;
 }
 .emphasis {
 	color: #ff6c00;
@@ -293,40 +322,6 @@ blockquote small {
 }
 .curvy {
 	font-family: 'Engagement', 'Source Pro Sans', sans-serif;
-}
-
-#team .teammate {
-	width: 200px;
-	height: 200px;
-	position: absolute;
-	font-size: 50%;
-}
-
-#team .avatar {
-	height: 200px;
-	width: 200px;
-	position: relative;
-}
-
-#team .avatar img {
-	height: 200px;
-	width: 200px;
-	position: absolute;
-	top: 0;
-	left: 0;
-}
-
-#team .avatar img.first {
-	opacity: 1;
-}
-
-#team .avatar img.second {
-	opacity: 0;
-}
-
-#team .name {
-	height: 40px;
-	text-align: center;
 }
 
 .code-holder {
@@ -340,8 +335,14 @@ blockquote small {
 
 .impress-enabled .step.active .ace,
 .impress-enabled .step.last .ace,
+.impress-enabled .step .code-holder.last .ace,
 .impress-on-literalsEvenMore #literalsEvenMoreCode .ace,
-.impress-on-literalsExtremeMore #literalsExtremeMoreCode .ace
+.impress-on-literalsExtremeMore #literalsExtremeMoreCode .ace,
+.impress-on-extensionResult #mixins .ace,
+.impress-on-compositionResult #composition .ace,
+.impress-on-prototypeInheritanceDeeper #prototypeInheritance .ace,
+.impress-on-prototypeInheritanceEvenDeeper #prototypeInheritance .ace,
+.impress-on-prototypeInheritanceEvenDeeper #prototypeInheritanceDeeper .ace
 {
 	opacity: 1;
 }
@@ -351,7 +352,10 @@ blockquote small {
     display: none !important;
 }
 
-.ace-highlight
+.ace-highlight,
+.ace-highlight-line,
+.ace-alt-highlight-line,
+.ace-other-highlight-line
  {
 	opacity: 0.6;
 	
@@ -365,14 +369,28 @@ blockquote small {
 }
 
 .ace-highlight-line {
-	background-color: rgba(26, 188, 156,0.5);
+	background-color: rgba(142, 68, 173,0.5); /*rgba(52, 152, 219, 0.5); rgba(26, 188, 156,0.5);*/
+}
+
+.ace-alt-highlight-line {
+    background-color: rgba(52, 152, 219, 0.5); /*rgba(26, 188, 156,0.5);*/
+}
+
+.ace-other-highlight-line {
+    background-color: rgba(26, 188, 156,0.5);
 }
 
 .ace_gutter {
     width: 2.5em;
 }
 
-.ace-clouds .ace_gutter-active-line {
+.ace_gutter-cell.ace_info,
+.ace_gutter-cell.ace_error,
+.ace_gutter-cell.ace_warning {
+    background:none;
+}
+
+.ace_gutter-active-line {
     background-color: transparent !important;
 }
 
@@ -456,7 +474,9 @@ blockquote small {
     width: 130px;
 }
 
-.summary-list{
+.summary-list,
+.quote
+{
     display: inline-block;
     position: relative;
     margin: 0 auto;
@@ -464,7 +484,9 @@ blockquote small {
     margin-left: 70px;
     margin-top:-40px;
 }
-.summary-list ul {
+.summary-list ul,
+.quote>div
+{
     margin: auto 0 auto 90px;
     width: 95%;
     background: white;
@@ -506,7 +528,9 @@ blockquote small {
     background:none;
 }
 
-.summary-list ul::before {
+.summary-list ul::before,
+.quote>div::before
+{
     content: " ";
     background: transparent url(../images/bubbleArrow.gif) no-repeat;
     position: absolute;
@@ -516,7 +540,9 @@ blockquote small {
     width: 79px;
 }
 
-.summary-list::before {
+.summary-list::before,
+.quote::before
+{
     content: " ";
     position: absolute;
     bottom: -7px;
@@ -526,7 +552,9 @@ blockquote small {
     z-index: -1;
 }
 
-.summary-list.good::before {
+.summary-list.good::before,
+.quote::before
+{
     background: transparent url(../images/happyIkeaDude.png) no-repeat;
 }
 

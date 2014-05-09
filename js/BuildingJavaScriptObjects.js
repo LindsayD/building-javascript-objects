@@ -29,7 +29,7 @@ var computeWindowScale = function ( config ) {
 	if (scale < 0) {
 		scale = 0;
 	}
-	console.log("window scale = " + scale + " hscale = " + hScale + " wscale = " + wScale);
+	//console.log("window scale = " + scale + " hscale = " + hScale + " wscale = " + wScale);
 	return { scale: scale, hScale: hScale, wScale: wScale };
 };
 
@@ -75,9 +75,9 @@ function renderMarker(stringBuilder, range, left, top, layerConfig) {
 		
 		var scale = computeWindowScale();
 		if (scale.scale < 1) {
-			console.log('start ' + layerConfig.origCharWidth);
+			//console.log('start ' + layerConfig.origCharWidth);
 			layerConfig.characterWidth = Math.ceil(layerConfig.characterWidth * (1 + (1 - scale.scale)));
-			console.log('ended up ' + layerConfig.characterWidth);
+			//console.log('ended up ' + layerConfig.characterWidth);
 		}
 	}
 	
@@ -108,15 +108,36 @@ function drawSingleLineMarker (stringBuilder, range, clazz, config, extraLength,
 	);
 };
 
+function getSubstepByClass(element, substeps) {
+    var substep = 0;
+
+    for (var i=1; i <= substeps;i++) {
+        if (element.classList.contains('ss' + i)) {
+            //console.log('found ss' + i);
+            substep = i;
+            break;
+        }
+    }
+    return substep;
+}
+
 function initAce(step, fontSize, tabSize) {
 	var stepId = step.id;
 	var substeps = parseInt(step.getAttribute('data-substeps'));
 	var els = $$('#' + stepId + ' .ace');
+    var substep = 0;
+    var lastSubstep = substep;
+    var instCount = 0;
 
     for (var i= 0,len=els.length; i<len; i++) {
-        var key = stepId + (len > 1 ? '-' + i : '');
         var el = els[i];
+        substep = getSubstepByClass(el.parentElement, substeps);
+        instCount = substep != lastSubstep ? 1 : instCount + 1;
+        var key = stepId + (substep > 0 ? '_' + substep : '') + ((instCount > -1 && substep > 0) ? '-' + instCount : (len > 1 ? '-' + i : ''));
+        //var key = stepId + (len > 1 ? '-' + i : '');
+
         var editor = AceEditors[key] = ace.edit(el);
+        console.log('initating ace for ' + key  + '   ' + len + ' ' + i);
 
         editor.setTheme("ace/theme/xcode");
         var session = editor.getSession();
@@ -131,10 +152,11 @@ function initAce(step, fontSize, tabSize) {
 
         AceSessions[key] = session;
         AceMarkers[key] = {};
-        AceMarkers[key]['ss0'] = [];
+        AceMarkers[key].ss0 = [];
         if (!isNaN(substeps)) {
-            for (var i=1; i<=substeps; i++) AceMarkers[key]['ss' + i] = [];
+            for (var j=1; j<=substeps; j++) AceMarkers[key]['ss' + j] = [];
         }
+        lastSubstep = substep;
     }
 }
 
@@ -149,7 +171,7 @@ function initAceEditors() {
         var el = edEls[i];
         var fontSize = sizes[el.dataset.size];
         if (typeof(fontSize) === 'undefined') fontSize = sizes.regular;
-        console.log('fontSize = ' + fontSize);
+        //console.log('fontSize = ' + fontSize);
 		initAce(
 			el.parentElement.parentElement,
 			fontSize,
@@ -174,8 +196,13 @@ var Steps = {
 	},
 	onStepLeave: function(step) {
 		var method = step.id + 'Leave'.replace('-','');
-		if (window[method] !== undefined) window[method](step); 
+		if (window[method] !== undefined) window[method](step);
+        this.onSubStepEnter(step, 1);
 	},
+    onSubStepLeave: function(step, substepIndex) {
+        var method = (step.id + 'LeaveSub' + substepIndex).replace('-','');
+        if (window[method] !== undefined) window[method](step, substepIndex);
+    },
 	showNotes: window.location.href.indexOf('notes') > -1
 };
 
@@ -193,41 +220,221 @@ function(step, index, forward) {
 	
 }
 */
-var literals2Action =
-function(step, index, forward) {
-    clearMarkers(AceSessions.literals2, AceMarkers.literals2.ss0);
 
-    var cls = 'ace-highlight-line';
-    var ms = AceMarkers.literals2.ss0;
-    var sn = AceSessions.literals2;
+function clearMarkersForStep(stepId, substep) {
+    substep = substep || 'ss0';
+    clearMarkers(AceSessions[stepId], AceMarkers[stepId][substep]);
+}
 
-    ms.push(sn.addMarker(new Range(0, 25, 0, 35), cls, renderMarker));
-    ms.push(sn.addMarker(new Range(3, 3, 23, 18), cls, renderMarker));
+function addMarkersForStep(stepId, substep, ranges, cls) {
+    substep = 'ss' + substep || 'ss0';
+    cls = cls || 'ace-highlight-line';
+    var ms = AceMarkers[stepId][substep];
+    var sn = AceSessions[stepId];
+
+    for (var i= 0,len=ranges.length;i<len;i++) {
+        var range = ranges[i];
+        ms.push(sn.addMarker(new Range(range[0], range[1], range.length > 3 ? range[2]:range[0], range.length > 3 ? range[3]:range[2]), cls, renderMarker));
+    }
+}
+
+var literalDeletePropsAction = function(step, index, forward) {
+    clearMarkersForStep(step.id);
+
+    addMarkersForStep(step.id, 0, [
+        [8,0,21]
+    ]);
+};
+
+var literalObjCreateAction = function(step, index, forward) {
+    clearMarkersForStep(step.id);
+
+    addMarkersForStep(step.id, 0, [
+        [0,13,30]
+    ]);
+};
+
+var literalsMoreAction = function(step, index, forward) {
+    clearMarkersForStep(step.id + '-0');
+
+    addMarkersForStep(step.id + '-0', 0, [
+        [4,19,30],
+        [10,19,30]
+    ]);
+};
+
+var mixinsAction = function(step, index, forward) {
+    clearMarkersForStep(step.id + '-1');
+
+    addMarkersForStep(step.id + '-1', 0, [
+        [4,4,20]
+    ]);
+};
+
+var compositionAction = function(step, index, forward) {
+    clearMarkersForStep(step.id + '-1');
+
+    addMarkersForStep(step.id + '-1', 0, [
+        [5,4,18]
+    ]);
+};
+
+var compositionResultAction = function(step, index, forward) {
+    clearMarkersForStep(step.id);
+
+    addMarkersForStep(step.id, 0, [
+        [10,4,30],
+        [11,4,29],
+        [12,4,27]
+    ]);
+};
+
+var compositionAPIAction = function(step, index, forward) {
+    clearMarkersForStep(step.id);
+
+    addMarkersForStep(step.id, 0, [
+        [2,4,24],
+        [11,4,31]
+    ]);
+
+    addMarkersForStep(step.id, 0, [
+        [5,4,20],
+        [6,4,17],
+        [14,4,22],
+        [15,4,20],
+        [16,4,17]
+    ], 'ace-alt-highlight-line');
+};
+
+var importsAction = function(step, index, forward) {
+    clearMarkersForStep(step.id);
+
+    addMarkersForStep(step.id, 0, [
+        [0,20,46],
+        [1,0,23],
+        [17,1,18]
+    ]);
+};
+
+var privateVarsAction = function(step, index, forward) {
+    clearMarkersForStep(step.id);
+
+    addMarkersForStep(step.id, 0, [
+        [3,4,30],
+        [8,12,32]
+    ]);
+};
+
+var privateVarsGetterAction = function(step, index, forward) {
+    clearMarkersForStep(step.id);
+
+    addMarkersForStep(step.id, 0, [
+        [8,23,42],
+        [9,16,33],
+        [10,12,14]
+    ]);
+};
+
+var privateVarsSetterAction = function(step, index, forward) {
+    clearMarkersForStep(step.id);
+
+    addMarkersForStep(step.id, 0, [
+        [9,16,41]
+    ]);
+};
+
+var instanceAction = function(step, index, forward) {
+    clearMarkersForStep(step.id);
+
+    addMarkersForStep(step.id, 0, [
+        [0,14,17]
+    ]);
+};
+
+var constructorGotchaAction = function(step, index, forward) {
+    clearMarkersForStep(step.id + '_3' + '-1');
+
+    addMarkersForStep(step.id + '_3' + '-1', 3, [
+        [1,32,51],
+        [7,51,59]
+    ]);
+};
+
+var prototypeDataAction = function(step, index, forward) {
+    clearMarkersForStep(step.id);
+
+    addMarkersForStep(step.id, 0, [
+        [7,0,50]
+    ]);
+};
+
+var prototypeDataSafeAction = function(step, index, forward) {
+    clearMarkersForStep(step.id);
+
+    addMarkersForStep(step.id, 0, [
+        [7,0,43]
+    ]);
+};
+
+var prototypeWheneverAction = function(step, index, forward) {
+    clearMarkersForStep(step.id + '-1');
+
+    addMarkersForStep(step.id + '-1', 0, [
+        [1,0,50]
+    ]);
+};
+
+var prototypeOverridesAction = function(step, index, forward) {
+    clearMarkersForStep(step.id + '-1');
+
+    addMarkersForStep(step.id + '-1', 0, [
+        [1,0,50]
+    ]);
+
+    addMarkersForStep(step.id + '-1', 0, [
+        [7,0,50]
+    ], 'ace-alt-highlight-line');
+};
+
+var prototypeInheritanceAction = function(step, index, forward) {
+    clearMarkersForStep(step.id + '-1');
+
+    addMarkersForStep(step.id + '-1', 0, [
+        [7,0,38]
+    ]);
+
+    addMarkersForStep(step.id + '-1', 0, [
+        [1,14,40]
+    ], 'ace-alt-highlight-line');
+
+    addMarkersForStep(step.id + '-1', 0, [
+        [2,4,40]
+    ], 'ace-other-highlight-line');
 };
 
 var literalVarLeave = literalAddPropsLeave = literalDeletePropsLeave = literalObjCreateLeave =
     literalsMoreLeave = literalsCompactLeave = literalsMoreCompactLeave = literalsEvenMoreLeave =
-    literalsExtremeMoreLeave = objectsAsDataLeave =mixinsLeave = dataExtensionLeave =
-    extensionResultLeave = modulePatternLeave = privateVarsLeave = privateVarsGetterLeave =
-    privateVarsSetterLeave = constructorLeave = instanceLeave = prototypeFunctionalityLeave =
-    prototypeDataLeave = prototypeWheneverLeave = prototypeOverridesLeave = prototypeAccessLeave =
-    prototypeInheritanceLeave = prototypeChaining =
-function(step) {
+    literalsExtremeMoreLeave = objectsAsDataLeave  = dataExtensionLeave =
+    modulePatternLeave = importsLeave = privateVarsLeave = privateVarsGetterLeave = privateVarsSetterLeave =
+    constructorLeave = instanceLeave = prototypeFunctionalityLeave = prototypeDataLeave = prototypeDataSafeLeave =
+    prototypeWheneverLeave = prototypeOverridesLeave = prototypeAccessLeave =
+    prototypeChaining =  extensionResultLeave = constructorGotchaSub1Leave = prototypeInheritanceEvenDeeperLeave =
+function smoothCodeTransfers(step) {
     step.classList.add("last");
     setTimeout(function () {
         step.classList.remove('last');
     }, 1000);
 };
 
-/*
-var literalVarAction = literalPropsAction = literals3Action = literals4Action = literals5Action = literals6Action =
-function(step) {
-    /*var last = $('.last');
-    if (last) {
-        console.log('in stepEnter ' + step.id + ' left ' + last.id);
+constructorGotchaLeaveSub1 = constructorGotchaLeaveSub2 =
+prototypeFunctionalityLeaveSub1 = prototypeFunctionalityLeaveSub2 = prototypeFunctionalityLeaveSub3 =
+    function smoothCodeSubstepTransfers(step, substep) {
+        var elSub = step.querySelector('.ss' + substep);
+        elSub.classList.add("last");
+        console.log('in substep leave for ' + step.id + ' ' + substep);
         setTimeout(function () {
-            last.classList.remove('last');
+            elSub.classList.remove('last');
         }, 1000);
-    }
-};
- */
+    };
+
+
