@@ -558,11 +558,11 @@ blockquote small {
 .summary-list.good::before,
 .quote::before
 {
-    background: transparent url(../images/happyIkeaDude.png) no-repeat;
+    background: transparent url(../images/HappyIkeaDude.png) no-repeat;
 }
 
 .summary-list.bad::before {
-    background: transparent url(../images/sadIkeaDude.png) no-repeat;
+    background: transparent url(../images/SadIkeaDude.png) no-repeat;
 }
 
 /*
