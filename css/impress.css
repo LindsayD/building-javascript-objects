@@ -224,7 +224,8 @@ blockquote small {
 .impress-enabled .step.only-group-objects,
 .impress-enabled .step.only-group-literals,
 .impress-enabled .step.only-group-extension,
-.impress-enabled .step.only-group-prototypes
+.impress-enabled .step.only-group-prototypes,
+.impress-enabled .step.only-group-combo
 { opacity: 0; }
 
 
@@ -238,6 +239,7 @@ blockquote small {
 .impress-enabled.impress-group-modules .step.only-group-modules,
 .impress-enabled.impress-group-prototypes .step.only-group-prototypes,
 .impress-enabled.impress-group-decisions .step.only-group-decisions,
+.impress-enabled.impress-group-combo .step.only-group-combo,
 .impress-enabled.impress-on-constructionTypes .step.only-group-literals,
 .impress-enabled.impress-on-constructionTypes .step.only-group-extension,
 .impress-enabled.impress-on-constructionTypes .step.only-group-modules,
@@ -342,7 +344,8 @@ blockquote small {
 .impress-on-compositionResult #composition .ace,
 .impress-on-prototypeInheritanceDeeper #prototypeInheritance .ace,
 .impress-on-prototypeInheritanceEvenDeeper #prototypeInheritance .ace,
-.impress-on-prototypeInheritanceEvenDeeper #prototypeInheritanceDeeper .ace
+.impress-on-prototypeInheritanceEvenDeeper #prototypeInheritanceDeeper .ace,
+.impress-group-combo #comboCode .ace
 {
 	opacity: 1;
 }

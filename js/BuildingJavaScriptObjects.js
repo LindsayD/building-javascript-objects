@@ -137,14 +137,14 @@ function initAce(step, fontSize, tabSize) {
         //var key = stepId + (len > 1 ? '-' + i : '');
 
         var editor = AceEditors[key] = ace.edit(el);
-        console.log('initating ace for ' + key  + '   ' + len + ' ' + i);
+        //console.log('initating ace for ' + key  + '   ' + len + ' ' + i);
 
         editor.setTheme("ace/theme/xcode");
         var session = editor.getSession();
         session.setMode('ace/mode/javascript');
         session.modeName = 'javascript';
 
-        editor.setOptions({ maxLines: 60 });
+        editor.setOptions({ maxLines: 90 });
         el.style.fontSize=fontSize;
         editor.setReadOnly(true);
         editor.setHighlightActiveLine(false);
@@ -163,7 +163,7 @@ function initAce(step, fontSize, tabSize) {
 function initAceEditors() {
 	var edEls = $$('.ace');
     var sizes = {
-        small: '16px',
+        small: '18px',
         smaller: '20px',
         regular: '24px'
     };
@@ -410,6 +410,112 @@ var prototypeInheritanceAction = function(step, index, forward) {
     addMarkersForStep(step.id + '-1', 0, [
         [2,4,40]
     ], 'ace-other-highlight-line');
+};
+
+var prototypeInheritanceDeeperAction = function(step, index, forward) {
+    clearMarkersForStep(step.id );
+
+    addMarkersForStep(step.id, 0, [
+        [7,0,38]
+    ]);
+
+    addMarkersForStep(step.id, 0, [
+        [1,14,40]
+    ], 'ace-alt-highlight-line');
+
+    addMarkersForStep(step.id, 0, [
+        [2,4,40]
+    ], 'ace-other-highlight-line');
+};
+
+var prototypeInheritanceEvenDeeperAction = function(step, index, forward) {
+    clearMarkersForStep(step.id );
+
+    addMarkersForStep(step.id, 0, [
+        [7,0,38]
+    ]);
+
+    addMarkersForStep(step.id, 0, [
+        [1,14,40]
+    ], 'ace-alt-highlight-line');
+
+    addMarkersForStep(step.id, 0, [
+        [2,4,40]
+    ], 'ace-other-highlight-line');
+};
+
+var comboAction = function(step, index, forward) {
+    clearMarkersForStep('comboCode');
+};
+
+var comboLiteralsAction = function(step, index, forward) {
+    clearMarkersForStep('comboCode');
+
+    addMarkersForStep('comboCode', 0, [
+        [8,8,51],
+        [9,8,77],
+        [13,8,21]
+    ]);
+};
+
+var comboExtensionAction = function(step, index, forward) {
+    clearMarkersForStep('comboCode');
+
+    addMarkersForStep('comboCode', 0, [
+        [23,11,34],
+        [40,26,38],
+        [54,22,38]
+    ]);
+};
+
+var comboModuleTopAction = function(step, index, forward) {
+    clearMarkersForStep('comboCode');
+
+    addMarkersForStep('comboCode', 0, [
+        [0,0,70],
+        [23,4,70]
+    ]);
+
+    addMarkersForStep('comboCode', 0, [
+        [1,4,15],
+        [3,4,23],
+        [7,4,16],
+        [12,4,33],
+        [24,21,31]
+    ], 'ace-alt-highlight-line');
+};
+
+var comboModuleBottomAction = function(step, index, forward) {
+    clearMarkersForStep('comboCode');
+
+    addMarkersForStep('comboCode', 0, [
+        [72,0,70]
+    ]);
+
+    addMarkersForStep('comboCode', 0, [
+        [42,20,40],
+        [50,19,26]
+    ], 'ace-alt-highlight-line');
+};
+
+var comboInheritanceTopAction = function(step, index, forward) {
+    clearMarkersForStep('comboCode');
+
+    addMarkersForStep('comboCode', 0, [
+        [1,4,70],
+        [4,8,70],
+        [24,8,31]
+    ]);
+};
+
+var comboInheritanceBottomAction = function(step, index, forward) {
+    clearMarkersForStep('comboCode');
+
+    addMarkersForStep('comboCode', 0, [
+        [49,8,14],
+        [50,19,34],
+        [53,8,14]
+    ]);
 };
 
 var literalVarLeave = literalAddPropsLeave = literalDeletePropsLeave = literalObjCreateLeave =

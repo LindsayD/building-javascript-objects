@@ -975,7 +975,7 @@ alert(person2.name + ' likes ' + person2.favoriteFood);
         </div>
     </div>
 
-    <div id="prototypeInheritance" class="step code prototypes" data-group="prototypes" data-x="3090" data-y="1000" data-scale="1" data-z="200">
+    <div id="prototypeInheritance" class="step code prototypes" data-substepsss="3" data-group="prototypes" data-x="3090" data-y="1000" data-scale="1" data-z="200">
         <div class="subheading-text">Inheritance</div>
         <div class="code-holder">
             <div class="ace" style="width: 100%;">function Person(init) {
@@ -996,10 +996,7 @@ Highborn.prototype = person;
 Highborn.prototype.inMajorHouse = false;
 var highborn = new Highborn(person1Data);</div>
         </div>
-    </div>
-
-    <div id="prototypeInheritanceDeeper" class="step code prototypes" data-group="prototypes" data-x="3090" data-y="1505" data-scale="1" data-z="200">
-        <div class="code-holder">
+        <!--div class="ss2 ss3 code-holder" style="height: 250px;">
             <div class="ace" style="width: 100%;">function Royal(data) {
     var obj = new Highborn(data);
     obj.constructor = Highborn;
@@ -1011,10 +1008,7 @@ Royal.prototype = highborn;
 Royal.prototype.presidesOver = 'Seven Kingdoms';
 var royal = new royal(person1Data);</div>
         </div>
-    </div>
-
-    <div id="prototypeInheritanceEvenDeeper" class="step code prototypes" data-group="prototypes" data-x="3090" data-y="1785" data-scale="1" data-z="200">
-        <div class="code-holder">
+        <div class="ss3 code-holder" style="height: 300px;">
             <div class="ace" style="width: 100%;">function Queen(data) {
     var obj = new Royal(data);
     obj.constructor = Queen;
@@ -1025,10 +1019,42 @@ var royal = new royal(person1Data);</div>
 Queen.prototype = royal;
 Queen.prototype.isRegentOnly = false;
 var queen = new Queen(person1Data);</div>
+        </div-->
+    </div>
+
+    <div id="prototypeInheritanceDeeper" class="step code prototypes" data-group="prototypes" data-x="3090" data-y="1555" data-scale="1" data-z="200">
+        <div class="code-holder">
+            <div class="ace" style="width: 100%;">function Royal(data) {
+    var obj = new Highborn(data);
+    obj.constructor = Highborn;
+    copy(this, obj); // only copy instance values
+    this.presidesOver = data.presidesOver || this.presidesOver;
+}
+
+Royal.prototype = highborn;
+Royal.prototype.presidesOver = 'Seven Kingdoms';
+var royal = new royal(person1Data);
+            </div>
         </div>
     </div>
 
-    <div id="keepItShallow" class="step prototypes" data-x="3090" data-y="2050" data-scale="1" data-z="200">
+    <div id="prototypeInheritanceEvenDeeper" class="step code prototypes" data-group="prototypes" data-x="3090" data-y="1885" data-scale="1" data-z="200">
+        <div class="code-holder">
+            <div class="ace" style="width: 100%;">function Queen(data) {
+    var obj = new Royal(data);
+    obj.constructor = Queen;
+    copy(this, obj); // only copy instance values
+    this.isReagentOnly = data.isWidow || this.isWidow
+}
+
+Queen.prototype = royal;
+Queen.prototype.isWidow = true;
+var queen = new Queen(person1Data);
+            </div>
+        </div>
+    </div>
+
+    <div id="keepItShallow" class="step prototypes" data-x="3090" data-y="2200" data-scale="1" data-z="200">
         <div class="quote">
             <div>
                 <div style="font-size: 60%;line-height:1.2em;">Because objects in JavaScript are so flexible, you will want to think differently about class hierarchies. <br/><br/>Deep hierarchies are inappropriate. <br/><br/>Shallow hierarchies are efficient and expressive.</div>
@@ -1037,7 +1063,7 @@ var queen = new Queen(person1Data);</div>
         </div>
     </div>
 
-    <div id="hierarchies" class="step prototypes" data-group="prototypes" data-x="3090" data-y="2500" data-scale="1" data-z="200">
+    <div id="hierarchies" class="step prototypes" data-group="prototypes" data-x="3090" data-y="2650" data-scale="1" data-z="200">
         <div style="text-align: center; position:relative;">
             <div class="pic"><img src="images/dontmakeamess.jpg" style="width:350px;"  /></div>
         </div>
@@ -1052,12 +1078,12 @@ var queen = new Queen(person1Data);</div>
 } </div>
             <div class="ace" style="width: 100%;margin-top:10px;">Highborn.prototype.inMajorHouse = false;</div>
             <div class="ace" style="width: 100%;margin-top:10px;">Royal.prototype.presidesOver = 'Seven Kingdoms';</div>
-            <div class="ace" style="width: 100%;margin-top:10px;">Queen.prototype.isRegentOnly = false;</div>
+            <div class="ace" style="width: 100%;margin-top:10px;">Queen.prototype.isWidow = true;</div>
             <div class="ace" style="width: 100%;margin-top:10px;">var queen = new Queen({ name: 'Daenerys', inMajorHouse: true });</div>
             <div class="ace" style="width: 100%;margin-top:10px;">queen.hasOwnProperty('name'); // true
 queen.hasOwnProperty('house'); // false
 queen.hasOwnProperty('inMajorHouse'); // true
-queen.hasOwnProperty('isRegentOnly'); //false
+queen.hasOwnProperty('isWidow'); //false
 queen.hasOwnProperty('allOutOfImaginationNow'); // false
             </div>
         </div>
@@ -1149,16 +1175,125 @@ queen.hasOwnProperty('allOutOfImaginationNow'); // false
         </div>
     </div>
 
+    <div id="useCombo" class="step" data-x="0" data-y="0" data-scale="1" data-z="0">
+        <div style="text-align: center; position:relative;">
+            <div class="pic"><img src="images/alltheways.jpg" style="width:500px;"  /></div>
+        </div>
+    </div>
+
+    <div id="comboCode" class="step code combo only-group-combo" data-group="combo" data-isprop="true" data-x="0" data-y="0" data-scale="1" data-z="0">
+        <div class="code-holder">
+            <div class="ace" data-size="small">ux.views.listButton = (function($, _, __, undefined) {
+    var _super_ = ux.views.control.prototype;
+
+    function listButton(options) {
+        _super_.constructor.call(this, options);
+    }
+
+    var variants = {
+        text: { template: ux.templates.listButton }, // default so no need to specify className
+        dot: { template: ux.templates.buttonDot, className: 'ux-button-dot' }
+    };
+
+    function getOptionsForVariant(variantName) {
+        var ops = {};
+        var variant = variants[variantName];
+        if (!__.existy(variant)) return ops;
+
+        ops.template = variant.template;
+        ops.className = variant.className;
+
+        return ops;
+    }
+
+    return ux.views.control.extend({
+        constructor: listButton,
+
+        options: {
+            template: ux.templates.listButton,
+            currentClass: '',
+            index: 0,
+            caption: '1',
+            variant: 'text'
+        },
+
+        events: {
+            'click': '_onClick'
+        },
+
+        initialize: function(options) {
+            if (options.variant !== this.options.variant)
+                options = _.extend(
+                    options,
+                    getOptionsForVariant(options.variant)
+                );
+
+            this.configure(options);
+            return this;
+        },
+
+        remove: function(options) {
+            return _super_.remove.call(this,options);
+        },
+
+        render: function(templateOptions) {
+            var ops = _.extend(
+                {
+                    currentClass: this.options.currentClass,
+                    index: this.options.index,
+                    caption: this.options.caption
+                },
+                templateOptions
+            );
+            var html = this.template(ops);
+            this.renderIntoSlot(html);
+
+            return this;
+        },
+
+        _onClick: function() {
+            this.eventTarget.trigger('click:listButton', { index: this.options.index });
+        }
+    });
+})(jQuery, _, ux.util);
+            </div>
+        </div>
+    </div>
+
+    <div id="combo" class="step combo" data-group="combo" data-x="0" data-y="300" data-scale="1" data-z="300"></div>
+
+    <div id="comboLiterals" class="step combo" data-group="combo" data-x="0" data-y="50" data-scale="1" data-z="0">
+        <div class="smaller-text bold-text curvy" style="position: absolute; top: -250px; right:10px; font-size: 300%; opacity: 0.2;">Literals</div>
+    </div>
+
+    <div id="comboExtension" class="step combo" data-group="combo" data-x="0" data-y="500" data-scale="1" data-z="0">
+        <div class="smaller-text bold-text curvy" style="position: absolute; top: -250px; right:10px; font-size: 300%; opacity: 0.2;">Extension</div>
+    </div>
+
+    <div id="comboModuleTop" class="step combo" data-group="combo" data-x="0" data-y="50" data-scale="1" data-z="0">
+        <div class="smaller-text bold-text curvy" style="position: absolute; top: -250px; right:10px; font-size: 300%; opacity: 0.2;">Modules</div>
+    </div>
+    <div id="comboModuleBottom" class="step combo" data-group="combo" data-x="0" data-y="1000" data-scale="1" data-z="0">
+        <div class="smaller-text bold-text curvy" style="position: absolute; top: -150px; right:10px; font-size: 300%; opacity: 0.2;">Modules</div>
+    </div>
+
+    <div id="comboInheritanceTop" class="step combo" data-group="combo" data-x="0" data-y="100" data-scale="1" data-z="0">
+        <div class="smaller-text bold-text curvy" style="position: absolute; top: -250px; right:10px; font-size: 300%; opacity: 0.2;">Inheritance</div>
+    </div>
+    <div id="comboInheritanceBottom" class="step combo" data-group="combo" data-x="0" data-y="1000" data-scale="1" data-z="0">
+        <div class="smaller-text bold-text curvy" style="position: absolute; top: -150px; right:10px; font-size: 300%; opacity: 0.2;">Inheritance</div>
+    </div>
+
     <div id="questions" class="step" data-x="0" data-y="0" data-scale="1" data-z="0">
         <div style="text-align: center; position:relative;">
-            <div class="smaller-text bold-text" style="position: absolute; top: -60px; left:0px; text-align: center; width:  100%;">Questions?</div>
+            <div class="bold-text curvy" style="position: absolute; top: -60px; left:0px; text-align: center; width:  100%;">Questions?</div>
             <div class="pic"><img src="images/spacegoat.jpg" style="width:450px;"  /></div>
         </div>
     </div>
 
     <div id="wrapup" class="step" data-x="0" data-y="0" data-scale="1" data-z="0">
         <div style="text-align: center; position:relative;">
-            <div class="smaller-text bold-text" style="position: absolute; top: -60px; left:0px; text-align: center; width:  100%;">Resources</div>
+            <div class="bold-text curvy" style="position: absolute; top: -60px; left:0px; text-align: center; width:  100%;">Resources</div>
             <div class="pic"><img src="images/children.jpg" style="width:550px;"  /></div>
         </div>
     </div>
