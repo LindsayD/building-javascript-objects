@@ -255,6 +255,7 @@ blockquote small {
 .impress-enabled.impress-on-decisions .step.only-group-prototypes,
 .impress-enabled.impress-on-extensionResult #mixins,
 .impress-enabled.impress-on-compositionResult #composition,
+.impress-enabled.impress-on-moduleResult #modulePattern,
 .impress-enabled.impress-on-prototypeInheritanceDeeper #prototypeInheritance,
 .impress-enabled.impress-on-prototypeInheritanceEvenDeeper #prototypeInheritance,
 .impress-enabled.impress-on-prototypeInheritanceEvenDeeper #prototypeInheritanceDeeper
@@ -347,6 +348,7 @@ blockquote small {
 .impress-on-literalsExtremeMore #literalsExtremeMoreCode .ace,
 .impress-on-extensionResult #mixins .ace,
 .impress-on-compositionResult #composition .ace,
+.impress-on-moduleResult #modulePattern .ace,
 .impress-on-prototypeInheritanceDeeper #prototypeInheritance .ace,
 .impress-on-prototypeInheritanceEvenDeeper #prototypeInheritance .ace,
 .impress-on-prototypeInheritanceEvenDeeper #prototypeInheritanceDeeper .ace,

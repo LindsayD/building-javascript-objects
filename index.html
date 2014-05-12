@@ -660,7 +660,24 @@ var Tyrion = _.extend({},
 
     return person; // composed object: data, defaults, methods
 };</div>
+            </div>
+        </div>
 
+    <div id="moduleResult" class="step code modules" data-group="modules" data-x="2070" data-y="1520" data-scale="1" data-z="200">
+        <div class="code-holder">
+            <div class="ace" style="width: 100%;">var person1 = personFactory(person1Data);</div>
+            <div class="ace" data-size="smaller" style="width: 100%;margin-top: 20px;">// person1
+{
+    name: 'Daenerys',
+    gender: 'female',
+    weapon: 'dragons',
+    location: 'Mureen',
+    house: 'Targaryen',
+    getHouse: function() {...},
+    brandish: function() {...},
+    scheme: function() {...}
+}
+            </div>
         </div>
     </div>
 
@@ -693,12 +710,12 @@ return function(data) {
             <div class="ace" style="width: 100%;">var personFactory = (function(dependency, _) {
 return function(data) {
     var personDefaults = { ... };
-    var isDeadYet = false;
+    var isDead = false;
     /* functions go here */
 
     return _.extend({
             /* public functions ... */
-            isDeadYet: isDeadYet
+            isDeadYet: isDead
         },
         personDefaults,
         data
@@ -713,13 +730,13 @@ return function(data) {
             <div class="ace" style="width: 100%;">var personFactory = (function(dependency, _) {
 return function(data) {
     var personDefaults = { ... };
-    var isDeadYet = false;
+    var isDead = false;
     /* functions go here */
 
     return _.extend({
             /* public functions ... */
             isDeadYet: function(val) {
-                return isDeadYet;
+                return isDead;
             };
         },
         personDefaults,
@@ -740,8 +757,8 @@ return function(data) {
     return _.extend({
             /* public functions ... */
             isDeadYet: function(val) {
-                if (val) isDeadYet = val;
-                return isDeadYet;
+                if (val) isDead = val;
+                return isDead;
             };
         },
         personDefaults,

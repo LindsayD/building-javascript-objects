@@ -521,7 +521,7 @@ var comboInheritanceBottomAction = function(step, index, forward) {
 var literalVarLeave = literalAddPropsLeave = literalDeletePropsLeave = literalObjCreateLeave =
     literalsMoreLeave = literalsCompactLeave = literalsMoreCompactLeave = literalsEvenMoreLeave =
     literalsExtremeMoreLeave = objectsAsDataLeave  = dataExtensionLeave =
-    modulePatternLeave = importsLeave = privateVarsLeave = privateVarsGetterLeave = privateVarsSetterLeave =
+    importsLeave = privateVarsLeave = privateVarsGetterLeave = privateVarsSetterLeave =
     constructorLeave = instanceLeave = prototypeFunctionalityLeave = prototypeDataLeave = prototypeDataSafeLeave =
     prototypeWheneverLeave = prototypeOverridesLeave = prototypeAccessLeave =
     prototypeChaining =  extensionResultLeave = constructorGotchaSub1Leave = prototypeInheritanceEvenDeeperLeave =
