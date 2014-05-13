@@ -126,6 +126,24 @@ is: ‘rails’, you’ve already lost the architecture game.
 	
 			
 			
+Before we get into things, I'd like to say a few things about JavaScript in general.  Many of you may have come from a
+classical object oriented background where you used languages like C#, Java or Ruby and you may be tempted to used
+JavaScript in a way that seems familiar and invoke Classes.  I would encourage you not to do this, and to consider
+that JavaScript has language features that many other languages simply lack. And that some languages, such as C#,
+have begun to implement things like the var keyword and dynamics to provide a more fluent programming experience that
+JavaScript give you by default.  This is incredibly flexible, and affords some freedom for implentation.
 
+As with most freedoms there also come responsibility.  If you want to be a good JavaScript programmer, you REALLY need
+to understand the fundamentals. If you become reliant on syntax sugar that seems comfortable, you may never take the
+time to look under the covers and see how things really work.  This can eventually affect your efficiency as a
+JavaScript programmer because you will not be able to understand the tradeoffs and how your design decisions may
+affect performance.  And you may end up with a psycho knocking on your door because you wrote crappy code!
+
+But the good news is, that since you are here today, you are probably interested in learning the fundamentals,
+and that is an awesome thing.
+
+If you needed any more convincing, here is a a quote by Douglas Crockford, considered one of the fathers of JavaScript
+and who literally wrote the book: JavaScript, the Good Parts, where he denounced the use of JavaScript in a Classical
+Object Oriented way.  So just keep this in mind as we explore Builiding JavaScript Objects.
 
 			

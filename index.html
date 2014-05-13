@@ -715,7 +715,8 @@ return function(data) {
 
     return _.extend({
             /* public functions ... */
-            isDeadYet: isDead
+            isDeadYet: isDead,
+            isStillAlive: function() { return !isDead; }
         },
         personDefaults,
         data
@@ -735,9 +736,10 @@ return function(data) {
 
     return _.extend({
             /* public functions ... */
-            isDeadYet: function(val) {
+            isDeadYet: function() {
                 return isDead;
             };
+            isStillAlive: function() { return !isDead; }
         },
         personDefaults,
         data
@@ -751,7 +753,7 @@ return function(data) {
             <div class="ace" style="width: 100%;">var personFactory = (function(dependency, _) {
 return function(data) {
     var personDefaults = { ... };
-    var isDeadYet = false;
+    var isDead = false;
     /* functions go here */
 
     return _.extend({
@@ -759,7 +761,8 @@ return function(data) {
             isDeadYet: function(val) {
                 if (val) isDead = val;
                 return isDead;
-            };
+            },
+            isStillAlive: function() { return !isDead; }
         },
         personDefaults,
         data
@@ -905,10 +908,10 @@ Person.prototype.die = function() { this.isDeadYet = true; };</div>
         </div>
     </div>
 
-    <div id="constructorGotcha" class="step code prototypes" data-substeps="3" data-group="prototypes" data-x="3090" data-y="1000" data-scale="1" data-z="200">
-        <div class="subheading-text">What's my Prototype?</div>
+    <div id="constructorGotcha" class="step code prototypes" data-substeps="5" data-group="prototypes" data-x="3090" data-y="1000" data-scale="1" data-z="200">
+        <div class="subheading-text">What's my Constructor?</div>
         <div class="code-holder ss1">
-            <div class="ace" style="width: 100%;">function Person() {}
+            <div class="ace" style="width: 100%;">function Person() { }
 var proto = { name: 'Daenerys' };
 Person.prototype = proto;
 
@@ -919,27 +922,49 @@ var person4 = Object.create(proto);
             </div>
         </div>
         <div class="code-holder ss2">
-            <div class="ace" style="width: 100%;">function Person() {}
+            <div class="ace" style="width: 100%;">function Person() { }
 var proto = { name: 'Daenerys' };
 Person.prototype = proto;
 
-var person1 = new Person();                     // Person
-var person2 = Person();                         // Object
-var person3 = Object.create(Person.prototype);  // Person
+var person1 = new Person();                     // Object
+var person2 = Person();                         // undefined
+var person3 = Object.create(Person.prototype);  // Object
 var person4 = Object.create(proto);             // Object
 </div>
         </div>
         <div class="code-holder ss3">
-            <div class="ace" style="width: 100%;">function Person() {}
+            <div class="ace" style="width: 100%;">function Person() { }
 var proto = { name: 'Daenerys', constructor: Person };
 Person.prototype = proto;
 
 var person1 = new Person();                     // Person
-var person2 = Person();                         // Object
+var person2 = Person();                         // undefined
 var person3 = Object.create(Person.prototype);  // Person
-var person4 = Object.create(proto);             // Person
+var person4 = Object.create(proto);             // Object
 </div>
         </div>
+<div class="code-holder ss4">
+    <div class="ace" style="width: 100%;">function Person() { }
+var proto = { name: 'Daenerys' };
+_.extend(Person.prototype, proto);
+
+var person1 = new Person();                     // Person
+var person2 = Person();                         // undefined
+var person3 = Object.create(Person.prototype);  // Person
+var person4 = Object.create(proto);             // Object
+    </div>
+</div>
+<div class="code-holder ss5">
+    <div class="ace" style="width: 100%;">function Person() { return this; }
+var proto = { name: 'Daenerys' };
+_.extend(Person.prototype, proto);
+
+var person1 = new Person();                     // Person
+var person2 = Person();                         // Window
+var person3 = Object.create(Person.prototype);  // Person
+var person4 = Object.create(proto);             // Object
+    </div>
+</div>
     </div>
 
     <div id="prototypeWhenever" class="step code prototypes" data-group="prototypes" data-x="3090" data-y="1000" data-scale="1" data-z="200">
@@ -996,17 +1021,17 @@ alert(person2.name + ' likes ' + person2.favoriteFood);
         <div class="subheading-text">Inheritance</div>
         <div class="code-holder">
             <div class="ace" style="width: 100%;">function Person(init) {
-    this.name = init.name || this.name;
-    this.weapon = init.weapon || this.weapon;
-    this.house = init.house || this.house;
+    this.name = init.name;
+    this.weapon = init.weapon;
+    this.house = init.house;
 }
 
 var person = new Person(person1Data);</div>
             <div class="ace" style="width: 100%;margin-top: 20px;">function Highborn(data) {
-    var obj = new Person(data);
-    obj.constructor = Highborn;
-    copy(this, obj); // only copy instance values
-    this.inMajorHouse = data.inMajorHouse || this.inMajorHouse;
+    var prson = new Person(data);
+    prson.constructor = Highborn; // clobber Person!
+    copy(this, prson); // only copy instance values
+    this.inMajorHouse = data.inMajorHouse;
 }
 
 Highborn.prototype = person;
@@ -1042,10 +1067,10 @@ var queen = new Queen(person1Data);</div>
     <div id="prototypeInheritanceDeeper" class="step code prototypes" data-group="prototypes" data-x="3090" data-y="1555" data-scale="1" data-z="200">
         <div class="code-holder">
             <div class="ace" style="width: 100%;">function Royal(data) {
-    var obj = new Highborn(data);
-    obj.constructor = Highborn;
-    copy(this, obj); // only copy instance values
-    this.presidesOver = data.presidesOver || this.presidesOver;
+    var hghborn = new Highborn(data);
+    hghborn.constructor = Royal;
+    copy(this, hghbrn); // only copy instance values
+    this.presidesOver = data.presidesOver;
 }
 
 Royal.prototype = highborn;
@@ -1058,10 +1083,10 @@ var royal = new royal(person1Data);
     <div id="prototypeInheritanceEvenDeeper" class="step code prototypes" data-group="prototypes" data-x="3090" data-y="1885" data-scale="1" data-z="200">
         <div class="code-holder">
             <div class="ace" style="width: 100%;">function Queen(data) {
-    var obj = new Royal(data);
-    obj.constructor = Queen;
-    copy(this, obj); // only copy instance values
-    this.isReagentOnly = data.isWidow || this.isWidow
+    var ryal = new Royal(data);
+    ryal.constructor = Queen;
+    copy(this, ryal); // only copy instance values
+    this.isReagentOnly = data.isWidow;
 }
 
 Queen.prototype = royal;
@@ -1090,8 +1115,8 @@ var queen = new Queen(person1Data);
         <div class="subheading-text">Prototype Chaining</div>
         <div class="code-holder">
             <div class="ace" style="width: 100%;">function Person(init) {
-    this.name = init.name || this.name; // prototype override
-    this.house = init.house || this.house; // prototype override
+    this.name = init.name; // prototype override
+    this.house = init.house; // prototype override
 } </div>
             <div class="ace" style="width: 100%;margin-top:10px;">Highborn.prototype.inMajorHouse = false;</div>
             <div class="ace" style="width: 100%;margin-top:10px;">Royal.prototype.presidesOver = 'Seven Kingdoms';</div>

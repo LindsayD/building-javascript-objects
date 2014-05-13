@@ -356,7 +356,21 @@ var constructorGotchaAction = function(step, index, forward) {
 
     addMarkersForStep(step.id + '_3' + '-1', 3, [
         [1,32,51],
-        [7,51,59]
+        [4,51,59],
+        [6,51,59]
+    ]);
+
+    clearMarkersForStep(step.id + '_4' + '-1');
+
+    addMarkersForStep(step.id + '_4' + '-1', 3, [
+        [2,0,70]
+    ]);
+
+    clearMarkersForStep(step.id + '_5' + '-1');
+
+    addMarkersForStep(step.id + '_5' + '-1', 3, [
+        [0,20,32],
+        [5,51,59]
     ]);
 };
 
@@ -408,7 +422,7 @@ var prototypeInheritanceAction = function(step, index, forward) {
     ], 'ace-alt-highlight-line');
 
     addMarkersForStep(step.id + '-1', 0, [
-        [2,4,40]
+        [2,4,33]
     ], 'ace-other-highlight-line');
 };
 
@@ -420,7 +434,7 @@ var prototypeInheritanceDeeperAction = function(step, index, forward) {
     ]);
 
     addMarkersForStep(step.id, 0, [
-        [1,14,40]
+        [1,18,40]
     ], 'ace-alt-highlight-line');
 
     addMarkersForStep(step.id, 0, [
@@ -502,10 +516,14 @@ var comboInheritanceTopAction = function(step, index, forward) {
     clearMarkersForStep('comboCode');
 
     addMarkersForStep('comboCode', 0, [
-        [1,4,70],
-        [4,8,70],
+        [3,4,32],
         [24,8,31]
     ]);
+
+    addMarkersForStep('comboCode', 0, [
+        [1,4,70],
+        [4,8,70]
+    ],'ace-alt-highlight-line');
 };
 
 var comboInheritanceBottomAction = function(step, index, forward) {
