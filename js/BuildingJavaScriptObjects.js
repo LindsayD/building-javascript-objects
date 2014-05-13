@@ -430,7 +430,7 @@ var prototypeInheritanceDeeperAction = function(step, index, forward) {
     clearMarkersForStep(step.id );
 
     addMarkersForStep(step.id, 0, [
-        [7,0,38]
+        [6,0,70]
     ]);
 
     addMarkersForStep(step.id, 0, [
@@ -438,7 +438,7 @@ var prototypeInheritanceDeeperAction = function(step, index, forward) {
     ], 'ace-alt-highlight-line');
 
     addMarkersForStep(step.id, 0, [
-        [2,4,40]
+        [7,0,70]
     ], 'ace-other-highlight-line');
 };
 
